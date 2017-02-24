@@ -10,4 +10,10 @@ public class isAdminTest extends TestCase {
 		assertEquals(true, result);
 	}
 	
+	public void testIsntAdmin() {
+		UserManager test = new UserManager();
+		boolean result = test.isAdmin(0);
+		assertEquals(false, result);
+	}
+	
 }
