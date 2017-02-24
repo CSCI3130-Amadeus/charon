@@ -4,7 +4,7 @@ public class UserManager {
 
   private static UserManager instance;
   
-  private UserManager() {
+  UserManager() {
   
   }
   
@@ -13,5 +13,15 @@ public class UserManager {
       instance = new UserManager();
     }
     return instance;
+  }
+  
+  public boolean isAdmin(int index){
+	  User admin = new User();
+	  if (admin.isAdmin(index) == true){
+		  return true;
+	  }
+	  else{
+		  return false;
+	  }
   }
 }
