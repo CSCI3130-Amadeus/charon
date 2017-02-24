@@ -8,7 +8,7 @@ public class UserManager {
 
   private ArrayList<User> users;
   private static UserManager instance;
-  
+
   private UserManager() {
 	  users = new ArrayList<User>();
   }
@@ -20,6 +20,7 @@ public class UserManager {
     return instance;
   }
   
+
   public boolean register(String userName,String email,String password){
 	  if(userName.equals("")||password.equals("")||email.equals("")){
 		  return false;
@@ -45,6 +46,4 @@ public class UserManager {
 	  
 	  
   }
-  
-  
 }
