@@ -1,62 +1,36 @@
 package org.amadeus.charon.data;
 
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.After;
-import org.junit.Before;
+import org.amadeus.charon.data.UserManager.LoginMessage;
 import org.junit.Test;
 
-public class Userlogin {
+import junit.framework.TestCase;
 
-	@Before
-	public void Before(){
-		System.out.println("Before the tset");
-	}
-	@After
-	public void After(){
-		System.out.println("Done");
-	}
-	//test empty usernames or passwords
-	@Test
-	public void testisEmpty() {
-		UserManager testuser = new UserManager();
-		User test = new User();
-		
-		test.setUsername("");
-		test.setUserpassword("");
-		int output = testuser.isEmpty(test);
-		assertEquals(1,output);
-		
-		test.setUsername("asdasdasd");
-		test.setUserpassword("zxcasdasd");
-		int output2 = testuser.isEmpty(test);
-		assertEquals(0,output2);
-	}
-	//test the usernames and passwords correctly
-	@Test
-	public void testisCorrect(){
-		UserManager testuser = new UserManager();
-		User test = new User();
-		//check correct
-		test.setUsername("aaaaa");
-		test.setUserpassword("bbbbb");
-		
-		testuser.UserManagerAdd("aaaaa", "bbbbb");
-		
-		int output = testuser.isCorrect(test);
-		assertEquals(1,output);
-		
-		//check incorrect
-		test.setUsername("aaaaa");
-		test.setUserpassword("bbbb");
-		
-		testuser.UserManagerAdd("aaaaa", "bbbbb");
-		
-		output = testuser.isCorrect(test);
-		assertEquals(0,output);
-	}
-	
-
+public class Userlogin extends TestCase{
+  
+  //test empty usernames or passwords
+  @Test
+  public void testisEmpty() {
+    UserManager testuser = UserManager.getInstance();
+    User test = new User("", "", "");
+    LoginMessage result = testuser.login(test);
+    assertEquals(LoginMessage.EMPTY, result);
+  }
+  //test the usernames and passwords correctly
+  @Test
+  public void testisCorrect(){
+    UserManager userManager = UserManager.getInstance();
+    userManager.register("joe", "email@email.com", "password");
+    
+    User user = new User("joe", "email@email.com", "password");
+    LoginMessage result = userManager.login(user);
+    assertEquals(LoginMessage.SUCCESS, result);
+    
+    //check incorrect
+    User fakeUser = new User("fake", "fake@fake.com", "fakepassword");
+    
+    result = userManager.login(fakeUser);
+    assertEquals(LoginMessage.FAILURE,result);
+  }
+  
 }
