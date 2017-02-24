@@ -5,14 +5,17 @@ import junit.framework.TestCase;
 public class isAdminTest extends TestCase {
 
 	public void testIsAdmin() {
-		UserManager test = new UserManager();
-		boolean result = test.isAdmin(1);
-		assertEquals(true, result);
+	  User.clearIndex();
+		User admin = new User("admin", "admin@webmaster.com", "password");
+		boolean result = admin.isAdmin();
+		assertEquals(true, admin.isAdmin());
 	}
 	
 	public void testIsntAdmin() {
-		UserManager test = new UserManager();
-		boolean result = test.isAdmin(0);
+	  User.clearIndex();
+    User admin = new User("admin", "admin@webmaster.com", "password");
+	  User user = new User("joe", "joe@email", "password");
+		boolean result = user.isAdmin();
 		assertEquals(false, result);
 	}
 	
