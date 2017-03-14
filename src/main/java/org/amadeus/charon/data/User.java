@@ -1,38 +1,58 @@
 package org.amadeus.charon.data;
 
-public class User {
+import java.io.Serializable;
 
-    private String username,email,password;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-    private int index;//index from database check whether user is admin
+@Entity
+public class User implements Serializable, Cloneable {
+    
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 915243714087571416L;
 
-    private static int autoIncrement = 1;
-
-    public static int getAutoIncrement() {
-        return autoIncrement;
-    }
-
-    public User(String username, String email, String password) {
+    @NotNull
+    @Size(min = 5, max = 64)
+    private String username;
+    
+    @NotNull
+    @Size(min = 5, max = 256)
+    private String email;
+    
+    @NotNull
+    @Size(min = 5, max = 64)
+    private String password;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    
+    @NotNull
+    private int role;
+    
+    public User(String username, String email, String password, int role) {
         super();
         this.username = username;
         this.email = email;
         this.password = password;
-        index = autoIncrement;
-        autoIncrement += 1;
+        this.role = role;
+    }
+    
+    protected User() {
+        
     }
 
     public boolean isAdmin(){
-        System.out.print(index +": ");
-        boolean admin = false;
-        if(index == 1){
-            admin = true;
-        }
-        System.out.println(admin);
-        return admin;
-    }
-
-    public static void clearIndex() {
-        autoIncrement = 1;
+        
+        return role == 0;
     }
 
     public String getUsername() {
@@ -57,5 +77,26 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // TODO Auto-generated method stub
+        if (obj instanceof User) {
+            User user = (User)obj;
+            if (user.id == id) {
+                return true;
+            }
+        }
+        return false; 
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = (31*result + (int)id);
+        result = (31*result + username.hashCode());
+        result = (31*result + email.hashCode());
+        return result;
     }
 }
