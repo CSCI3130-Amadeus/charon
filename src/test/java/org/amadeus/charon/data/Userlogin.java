@@ -16,7 +16,7 @@ public class Userlogin extends TestCase{
     @Test
     public void testisCorrect(){
         UserManager userManager = UserManager.getInstance();
-        userManager.register("joe", "email@email.com", "password");
+        userManager.registerUser("joe", "email@email.com", "password");
         
         LoginMessage result = userManager.login("joe", "password");
         assertEquals(LoginMessage.SUCCESS, result);
