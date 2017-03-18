@@ -1,4 +1,4 @@
-package org.amadeus.charon.data;
+package org.amadeus.charon;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,12 +27,6 @@ public class ReviewCourseUITest extends TestBenchTestCase {
         $(TextAreaElement.class).id("COMMENT_ENTRY").setValue("This is a review!");
         $(ButtonElement.class).id("SUBMIT_BUTTON").click();
         
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
         String result = $(LabelElement.class).id("RESULT").getText();
         
         assertEquals("Success!", result);
