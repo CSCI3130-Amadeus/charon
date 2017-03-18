@@ -1,5 +1,4 @@
 language: java
-script: ./.travis.script.sh
 install:
 - mvn install
 jdk:
