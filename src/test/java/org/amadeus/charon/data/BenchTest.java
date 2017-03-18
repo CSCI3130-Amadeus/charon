@@ -1,23 +1,19 @@
 package org.amadeus.charon.data;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+
 import com.vaadin.testbench.ScreenshotOnFailureRule;
 import com.vaadin.testbench.TestBenchTestCase;
 import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.LabelElement;
 import com.vaadin.testbench.elements.TextFieldElement;
-import junit.framework.TestCase;
-
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
-
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 
 public class BenchTest extends TestBenchTestCase {
@@ -66,10 +62,5 @@ public class BenchTest extends TestBenchTestCase {
 	        // ... and the last label should have the correct text
 	        LabelElement lastLabel = allLabels.get(1);
 	        assertEquals("Thanks User, it works!", lastLabel.getText());
-	    } 
-	   
-       
-       
+	    }    
    }
-
-

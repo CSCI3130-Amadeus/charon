@@ -32,18 +32,7 @@ public class MyUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         final VerticalLayout layout = new VerticalLayout();
-  
-        JPAContainer<User> container = JPAContainerFactory.make(User.class, PERSISTENCE_UNIT);
-        
-        layout.addComponent(new Label("Page loaded with no errors."));
-        
-        UserManager userManager = UserManager.getInstance();
-        userManager.createTestUserData();
-        
-        String result = userManager.login("John", "password1").toString();
-        
-        layout.addComponent(new Label("RESULT: " + result));
-        
+
         setContent(layout);
     }
     
