@@ -2,7 +2,7 @@ package org.amadeus.charon.data;
 
 public class Course {
 		
-		int id;
+		long id;
 		String courseCode;
 		String courseName;
 		String courseDesc;
@@ -15,11 +15,11 @@ public class Course {
 		}
 		
 		//Gets and Sets
-		public void setCourseId(int x){
+		public void setCourseId(long x){
 			id = x;
 		}
 		
-		public int getCourseId(){
+		public long getCourseId(){
 			return id;
 		}
 		
@@ -50,6 +50,7 @@ public class Course {
 		public String getCourseDesc(){
 			return courseDesc;
 		}
-	
+		
+
 }
 

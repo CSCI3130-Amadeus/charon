@@ -27,13 +27,14 @@ public class CourseManager {
     
     private HashMap<String, Course> course;
     private static CourseManager instance;
+        
     
-    private CourseManager() {
-        course = new HashMap<String, Course>();
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-        em = emFactory.createEntityManager();
+ 
     
-    }
-	
+    
+    
+    
+ 
+
 	
 }

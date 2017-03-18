@@ -31,11 +31,22 @@ public class CourseOverviewUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-         GridLayout gridCourseOverview = new GridLayout(8, 8);
+         VerticalLayout CourseOv = new VerticalLayout();
+         
+         HorizontalLayout titlebar = new HorizontalLayout();
+         titlebar.setWidth("100%");
+         CourseOv.addComponent(titlebar);
+         
+         Label title = new Label("Course");
+         titlebar.addComponent(title);
+         
+         setContent(CourseOv);
+         
+         
         
-        final TextField name = new TextField();
         
-        //Dummy data
+        
+        /*//data
         int[] courseIds = new int[]{1, 2, 3, 4};
         String[] courseCodes = new String[]{"CSCI 0000", "CSCI 0001", "CSCI 0002", "CSCI 0003"};
         String[] courseNames = new String[]{"Name_1", "Name_2", "Name_3", "Name_4"};
@@ -63,6 +74,7 @@ public class CourseOverviewUI extends UI {
         gridCourseOverview.setSpacing(true);
         setContent(gridCourseOverview);
         
+    }*/
     }
     
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

@@ -14,6 +14,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.GridLayout;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextField;
@@ -33,7 +34,22 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-         GridLayout gridCourseOverview = new GridLayout(8, 8);
+    	 VerticalLayout CourseOv = new VerticalLayout();
+    	 
+         
+         HorizontalLayout titlebar = new HorizontalLayout();
+         titlebar.setWidth("100%");
+         CourseOv.addComponent(titlebar);
+         
+         Label title = new Label("Course");
+         titlebar.addComponent(title);
+         
+         setContent(CourseOv);      
+    	 
+    	 
+    	 
+        /* GridLayout gridCourseOverview = new GridLayout(8, 8);
+        
         
         final TextField name = new TextField();
         
@@ -59,13 +75,19 @@ public class MyUI extends UI {
         	courseContent.setMargin(true);
         	course.setContent(courseContent);
         	gridCourseOverview.addComponent(course, i, 1);
+        	
+        ////Course verti 
+        	
         }
         
         gridCourseOverview.setMargin(true);
         gridCourseOverview.setSpacing(true);
         setContent(gridCourseOverview);
+    }*/
         
-    }
+        
+    }   
+    
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet {
