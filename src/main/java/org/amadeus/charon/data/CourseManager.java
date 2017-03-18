@@ -28,7 +28,7 @@ public class CourseManager {
     private HashMap<Integer, Course> course;
     private static CourseManager instance;
     
-    private CourseManager() {
+    public CourseManager() {
         course = new HashMap<Integer, Course>();
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
         em = emFactory.createEntityManager();
