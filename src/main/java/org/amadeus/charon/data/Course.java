@@ -24,7 +24,6 @@ public class Course implements Serializable, Cloneable{
 //		this.courseName = courseName;
 //		this.courseDesc = courseDesc;
 //	}
-	
 	public int getId() {
 		return id;
 	}
@@ -49,6 +48,7 @@ public class Course implements Serializable, Cloneable{
 	public void setCourseDesc(String courseDesc) {
 		this.courseDesc = courseDesc;
 	}
-	
+
+
 	
 }
