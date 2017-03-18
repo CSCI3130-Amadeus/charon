@@ -19,11 +19,14 @@ public class Course implements Serializable, Cloneable{
 	private String courseDesc;
 	
 	
-//	public void Course(String courseCode, String courseName, String courseDesc){
-//		this.courseCode = courseCode;
-//		this.courseName = courseName;
-//		this.courseDesc = courseDesc;
-//	}
+
+	public Course(String courseCode, String courseName, String courseDesc){
+		this.courseCode = courseCode;
+		this.courseName = courseName;
+		this.courseDesc = courseDesc;
+	}
+	
+
 	public int getId() {
 		return id;
 	}
@@ -49,6 +52,15 @@ public class Course implements Serializable, Cloneable{
 		this.courseDesc = courseDesc;
 	}
 
+	
+	public int hashCode() {
+        int result = 17;
+        result = (31*result + (int)id);
+        result = (31*result + courseName.hashCode());
+        result = (31*result + courseCode.hashCode());
+        result = (31*result + courseDesc.hashCode());
+        return result;
+    }
 
 	
 }
