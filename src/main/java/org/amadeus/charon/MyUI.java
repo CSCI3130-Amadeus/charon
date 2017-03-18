@@ -35,6 +35,7 @@ public class MyUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
     	 VerticalLayout CourseOv = new VerticalLayout();
+    	 CourseOv.setId("cop");
     	 
          
          HorizontalLayout titlebar = new HorizontalLayout();
