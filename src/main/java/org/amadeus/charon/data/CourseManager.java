@@ -22,13 +22,14 @@ public class CourseManager {
     
     public enum CourseMessage  {
         SUCCESS,
-        FAILURE
+        FAILURE,
+        EMPTY
     }
     
-    private HashMap<Integer, Course> course;
+    public HashMap<Integer, Course> course;
     private static CourseManager instance;
     
-    private CourseManager() {
+    public CourseManager() {
         course = new HashMap<Integer, Course>();
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
         em = emFactory.createEntityManager();
@@ -42,14 +43,15 @@ public class CourseManager {
         return instance;
     }
     
-     public boolean addCourseCode(int id, String courseCode, String courseName, String courseDesc){
+     public boolean addCourse(int id, String courseCode, String courseName, String courseDesc){
 //    	 CourseManager add = new CourseManager();
     	 Course add = new Course(courseCode, courseName, courseDesc);
-    	 if (course.put(id, add) == null)
-    		 return false;
+    	 course.put(id, add);
+    	 if (course.containsKey(id))
+    		 return true;
     	 
     	 else
-    		 return true;
+    		 return false;
      }
      
      public boolean delCourse(int id){
@@ -60,21 +62,38 @@ public class CourseManager {
     		 return false;
      }
      
-     public boolean editCourse(int id, String courseCode, String courseName, String courseDesc){
+     public boolean editCourseCode(int id, String courseCode){
     	 if(course.isEmpty())
     		 return false;
     	 
     	 Course edit = course.get(id);
+    	 Course old = edit;
     	 if(courseCode != null)
     		 edit.setCourseCode(courseCode);
-    	 if(courseName != null)
-    		 edit.setCourseName(courseName);
-    	 if(courseDesc != null)
-    		 edit.setCourseDesc(courseDesc);
-    	 course.remove(id);
-    	 course.put(id, edit);
+    	 return course.replace(id, old, edit);
     	 
-    	 return true;
+     }
+     
+     public boolean editCourseName(int id, String courseName){
+    	 if(course.isEmpty())
+    		 return false;
+    	 
+    	 Course edit = course.get(id);
+    	 Course old = edit;
+    	 if(courseName != null)
+    		 edit.setCourseCode(courseName);
+    	 return course.replace(id, old, edit);
+     }
+     
+     public boolean editCourseDesc(int id, String courseDesc){
+    	 if(course.isEmpty())
+    		 return false;
+    	 
+    	 Course edit = course.get(id);
+    	 Course old = edit;
+    	 if(courseDesc != null)
+    		 edit.setCourseCode(courseDesc);
+    	 return course.replace(id, old, edit);
      }
      
      private List<Course> getCourseList(){
@@ -85,7 +104,6 @@ public class CourseManager {
          cq.select(rootCourse);
          TypedQuery<Course> q = em.createQuery(cq);
          List<Course> course = q.getResultList();
-         
          return course;
      }
 }
