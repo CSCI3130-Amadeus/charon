@@ -3,19 +3,16 @@ package org.amadeus.charon;
 
 import javax.servlet.annotation.WebServlet;
 
-import org.amadeus.charon.data.User;
+import org.amadeus.charon.data.Course;
+import org.amadeus.charon.data.CourseManager;
 import org.amadeus.charon.data.UserManager;
 
-import com.vaadin.addon.jpacontainer.JPAContainer;
-import com.vaadin.addon.jpacontainer.JPAContainerFactory;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.v7.ui.Table;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -33,6 +30,15 @@ public class MyUI extends UI {
     protected void init(VaadinRequest vaadinRequest) {
         final VerticalLayout layout = new VerticalLayout();
 
+        long courseId = CourseManager.getInstance().createCourse("CSCI 3130", "Software Engineering", "Lorem ipsum");
+        
+        Course course = CourseManager.getInstance().getCourse(courseId);
+        UserManager.getInstance().registerUser("public_user", "public@public.com", "123456789");
+        UserManager.getInstance().login("public_user", "123456789");
+        ReviewForm reviewForm = new ReviewForm(course);
+        
+        layout.addComponent(reviewForm);
+        
         setContent(layout);
     }
     

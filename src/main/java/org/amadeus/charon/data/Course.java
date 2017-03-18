@@ -59,6 +59,10 @@ public class Course implements Serializable{
     public void setReviews(Collection<Review> reviews) {
         this.reviews = reviews;
     }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
     
     
 }

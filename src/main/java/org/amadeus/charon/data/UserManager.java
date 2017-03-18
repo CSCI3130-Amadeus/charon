@@ -27,6 +27,8 @@ public class UserManager {
   
     private static UserManager instance;
    
+    private User authedUser;
+    
     public static UserManager getInstance() {
         if (instance == null) {
             instance = new UserManager();
@@ -48,6 +50,7 @@ public class UserManager {
 
         if (user != null){
             if (user.getPassword().equals(password)){
+                authedUser = user;
                 return LoginMessage.SUCCESS;
             }
             else {
@@ -57,6 +60,7 @@ public class UserManager {
         else {
             return LoginMessage.INVALID_USERNAME;        
         }
+        
     }
     
 
@@ -138,4 +142,10 @@ public class UserManager {
     private boolean checkEmail(String email){
         return email.contains("@");
     }
+
+    public User getAuthedUser() {
+        return authedUser;
+    }
+    
+    
 }

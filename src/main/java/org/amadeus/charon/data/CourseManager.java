@@ -35,8 +35,8 @@ public class CourseManager {
     }
     
     
-    protected Course getCourse(long id) {
-        return em.find(Course.class, id);        
+    public Course getCourse(long id) {
+        return em.find(Course.class, id);
     }
     
 
