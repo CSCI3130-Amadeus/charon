@@ -104,6 +104,7 @@ public class CourseManager {
          cq.select(rootCourse);
          TypedQuery<Course> q = em.createQuery(cq);
          List<Course> course = q.getResultList();
+         
          return course;
      }
 }
