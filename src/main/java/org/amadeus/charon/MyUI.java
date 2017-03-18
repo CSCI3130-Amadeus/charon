@@ -41,49 +41,17 @@ public class MyUI extends UI {
          titlebar.setWidth("100%");
          CourseOv.addComponent(titlebar);
          
-         Label title = new Label("Course");
-         titlebar.addComponent(title);
+         Label courseName = new Label("Course Title Here");
+         titlebar.addComponent(courseName);
+         Label courseCode = new Label("CSCI 0000");
+         Label courseDesc = new Label("This is the course's description");
+         CourseOv.addComponents(courseCode);
+         CourseOv.addComponents(courseName);
+         CourseOv.addComponents(courseDesc);
          
+         CourseOv.setMargin(true);
+         CourseOv.setSpacing(true);
          setContent(CourseOv);      
-    	 
-    	 
-    	 
-        /* GridLayout gridCourseOverview = new GridLayout(8, 8);
-        
-        
-        final TextField name = new TextField();
-        
-        //Dummy data
-        int[] courseIds = new int[]{1, 2, 3, 4};
-        String[] courseCodes = new String[]{"CSCI 0000", "CSCI 0001", "CSCI 0002", "CSCI 0003"};
-        String[] courseNames = new String[]{"Name_1", "Name_2", "Name_3", "Name_4"};
-        String[] courseDescs = new String[]{"This is Name_1's desc.", "This is Name_2's desc.", "This is Name_3's desc.", "This is Name_4's desc."};
-        
-        //Header Label for Welcoming Users
-        Label welcome = new Label("Charon- Course Page");
-        gridCourseOverview.addComponent(welcome, 0, 0);
-        
-        
-        //Panel for visualizing courses
-        for (int i = 0; i < 4; i++){
-        	Panel course = new Panel(courseCodes[i]);
-        	course.setWidth("50%");
-        	FormLayout courseContent = new FormLayout();
-        	courseContent.addComponent(new Label(courseNames[i]));
-        	courseContent.addComponent(new Label(courseDescs[i]));
-        	courseContent.setSizeUndefined();
-        	courseContent.setMargin(true);
-        	course.setContent(courseContent);
-        	gridCourseOverview.addComponent(course, i, 1);
-        	
-        ////Course verti 
-        	
-        }
-        
-        gridCourseOverview.setMargin(true);
-        gridCourseOverview.setSpacing(true);
-        setContent(gridCourseOverview);
-    }*/
         
         
     }   
