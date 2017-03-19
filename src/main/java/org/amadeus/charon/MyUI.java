@@ -3,20 +3,12 @@ package org.amadeus.charon;
 
 import javax.servlet.annotation.WebServlet;
 
-import org.amadeus.charon.data.User;
-import org.amadeus.charon.data.UserManager;
-
-import com.vaadin.addon.jpacontainer.JPAContainer;
-import com.vaadin.addon.jpacontainer.JPAContainerFactory;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.v7.ui.Table;
-
+import com.vaadin.v7.ui.Grid;
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
  * (or tab) or some part of a html page where a Vaadin application is embedded.
@@ -29,23 +21,16 @@ public class MyUI extends UI {
 
     public static final String PERSISTENCE_UNIT = "charon_db";  
     
+    
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        final VerticalLayout layout = new VerticalLayout();
-  
-        JPAContainer<User> container = JPAContainerFactory.make(User.class, PERSISTENCE_UNIT);
+    	
         
-        layout.addComponent(new Label("Page loaded with no errors."));
-        
-        UserManager userManager = UserManager.getInstance();
-        userManager.createTestUserData();
-        
-        String result = userManager.login("John", "password1").toString();
-        
-        layout.addComponent(new Label("RESULT: " + result));
-        
-        setContent(layout);
+        setContent(new CourseList());
     }
+    
+    
+    
     
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)

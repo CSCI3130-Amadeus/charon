@@ -29,7 +29,7 @@ public class CourseManager {
     public HashMap<Integer, Course> course;
     private static CourseManager instance;
     
-    public CourseManager() {
+    private CourseManager() {
         course = new HashMap<Integer, Course>();
         EntityManagerFactory emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
         em = emFactory.createEntityManager();
@@ -96,15 +96,11 @@ public class CourseManager {
     	 return course.replace(id, old, edit);
      }
      
-     private List<Course> getCourseList(){
-         // This is all to do one query.......
-         CriteriaBuilder cb = em.getCriteriaBuilder();
-         CriteriaQuery<Course> cq = cb.createQuery(Course.class);
-         Root<Course> rootCourse = cq.from(Course.class);
-         cq.select(rootCourse);
-         TypedQuery<Course> q = em.createQuery(cq);
-         List<Course> course = q.getResultList();
-         
-         return course;
+     public ArrayList<Course> getCourseList(){
+        ArrayList<Course> courselist = new ArrayList<Course>();
+        courselist.add(new Course("CSCI", "1000", "aabb"));
+        courselist.add(new Course("CSCI", "2000", "aa"));
+        courselist.add(new Course("CSCI", "3000", "bb"));
+        return courselist;
      }
 }
