@@ -28,13 +28,12 @@ public class MyUI extends UI {
     public static final String PERSISTENCE_UNIT = "charon_db";  
     
     @Override
-    protected void init(VaadinRequest vaadinRequest) {
-        CourseManager.getInstance().createCourse("CSCI3130", "Software Engineering", "Lorem ipsum");
+    protected void init(VaadinRequest vaadinRequest) {       
         UserManager.getInstance().registerUser("public_user", "public@public.com", "123456789");
         UserManager.getInstance().login("public_user", "123456789");
+
         
         Navigator.registerNavigator(this);
-        Navigator.registerIndex(new CourseList());
         Navigator.index();
     }
     

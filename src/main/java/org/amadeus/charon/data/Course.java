@@ -40,11 +40,13 @@ public class Course implements Serializable{
     private Collection<Review> reviews;
     
 
-    public Course(String courseCode, String courseName, String courseDec) {
+    public Course(String courseCode, String courseName, String courseDesc) {
         super();
         this.courseCode = courseCode;
+
         this.courseName = courseName;
-        this.courseDesc = courseDec;
+        this.courseDesc = courseDesc;
+
     }
     
     public Course() {}
