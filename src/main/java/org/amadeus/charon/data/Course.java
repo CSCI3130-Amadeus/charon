@@ -7,7 +7,7 @@ public class Course {
 		String courseName;
 		String courseDesc;
 		
-		public Course(int i, String c, String n, String d){
+		public Course(long i, String c, String n, String d){
 			this.id = i;
 			this.courseCode = c;
 			this.courseName = n;
