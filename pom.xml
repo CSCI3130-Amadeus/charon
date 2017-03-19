@@ -91,7 +91,14 @@
 			<artifactId>vaadin-testbench</artifactId>
 			<version>4.2.0</version>
 			<scope>test</scope>
-		</dependency>		
+		</dependency>
+		<dependency>
+    <groupId>com.vaadin</groupId>
+    <artifactId>vaadin-testbench</artifactId>
+    <version>4.2.0</version>
+    <scope>test</scope>
+</dependency>
+				
 	</dependencies>
 
 	<build>
@@ -157,7 +164,8 @@
 			    <configuration>
 			        <excludes>
 			            <exclude>**/ReviewCourseUITest.java</exclude>
-			            <exclude>**/BenchTest.java</exclude>
+			            <exclude>**/CourseOverviewTest.java</exclude>
+			            <exclude>**/CourseListUITest.java</exclude>
 			        </excludes>
 			    </configuration>
 		    </plugin>

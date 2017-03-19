@@ -12,12 +12,12 @@ public class ReviewCourseTest {
     
     
     private static final String username = "john";
-    private long courseId;
+    private static final String courseCode = "TEST3130";
 
     @Before
     public void setupTest(){
         UserManager.getInstance().registerUser(username, "fake@fake.com", "passssword");
-        courseId = CourseManager.getInstance().createCourse("CSCI3130", "Software Engineering", "Lorem Ipsum");
+        CourseManager.getInstance().createCourse(courseCode, "Software Engineering", "Lorem Ipsum");
     }
 
     
@@ -25,12 +25,12 @@ public class ReviewCourseTest {
     public void testPersistence() {
         
         User user = UserManager.getInstance().getUser(username);
-        Course course = CourseManager.getInstance().getCourse(courseId);
+        Course course = CourseManager.getInstance().getCourseByCode(courseCode);
         String comment = "Lorem ipsum si dolor amet";
         
         ReviewManager.getInstance().createReview(comment, user, course);
         
-        Course loadedFromDB = CourseManager.getInstance().getCourse(courseId);
+        Course loadedFromDB = CourseManager.getInstance().getCourseByCode(courseCode);
         
         assertTrue(loadedFromDB.getReviews().size() >= 1);
     }
@@ -39,11 +39,9 @@ public class ReviewCourseTest {
     public void badReviewTest() {
         
         User user = UserManager.getInstance().getUser(username);
-        Course course = CourseManager.getInstance().getCourse(courseId);
+        Course course = CourseManager.getInstance().getCourseByCode(courseCode);
         String comment = "";
         
-        long id = ReviewManager.getInstance().createReview(comment, user, course);
-        
-        assertEquals(id, -1);
+        assertFalse(ReviewManager.getInstance().createReview(comment, user, course));
     }
 }

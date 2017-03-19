@@ -12,8 +12,7 @@ import com.vaadin.testbench.elements.ButtonElement;
 import com.vaadin.testbench.elements.LabelElement;
 import com.vaadin.testbench.elements.TextAreaElement;
 
-
-public class ReviewCourseUITest extends TestBenchTestCase {
+public class CourseListUITest extends TestBenchTestCase{
 
 	@Before
 	public void setUp() throws Exception{
@@ -24,10 +23,9 @@ public class ReviewCourseUITest extends TestBenchTestCase {
 	public void testReviewComponent() {
         getDriver().get("http://localhost:8080/");
         
-        $(TextAreaElement.class).id("COMMENT_ENTRY").setValue("This is a review!");
-        $(ButtonElement.class).id("SUBMIT_BUTTON").click();
         
-        assertNotNull($(LabelElement.class).caption("This is a review!"));
+        
+        assertNotNull($(LabelElement.class).id("COURSELIST"));
         
         
 	}
@@ -36,4 +34,5 @@ public class ReviewCourseUITest extends TestBenchTestCase {
 	public void tearDown(){
 	    getDriver().close();
 	}
+
 }

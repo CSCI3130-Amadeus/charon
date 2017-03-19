@@ -64,36 +64,7 @@ public class ProfessorAddCourse extends VerticalLayout{
     	
     }//close init()
     
-    @SuppressWarnings({ "serial", "unused" })
-    private ClickListener getSubmitButtonListener() {
-        return new ClickListener(){
 
-            public void buttonClick(ClickEvent event) {
-                User user = UserManager.getInstance().getAuthedUser();
-                long id = CourseManager.getInstance().createCourse(addCourseNameField.getValue(),
-                		addCourseCodeField.getValue(),
-                		addCourseDescField.getValue());
-                if (id != -1) {
-                    Label result = new Label("Success!");
-                    result.setId("RESULT");
-                    layout.addComponent(result);
-                }
-                else {
-                    Label result = new Label("Failed!");
-                    result.setId("RESULT");
-                    layout.addComponent(result);
-                }
-            }
-
-			@Override
-			public void click(com.vaadin.event.MouseEvents.ClickEvent event) {
-				// TODO Auto-generated method stub
-				
-			}
-        };
-        
-        
-    }
 
     
 }

@@ -12,7 +12,8 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+
+
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -28,24 +29,19 @@ public class MyUI extends UI {
     
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        final VerticalLayout layout = new VerticalLayout();
-
-        long courseId = CourseManager.getInstance().createCourse("CSCI 3130", "Software Engineering", "Lorem ipsum");
-        
-        Course course = CourseManager.getInstance().getCourse(courseId);
+        CourseManager.getInstance().createCourse("CSCI3130", "Software Engineering", "Lorem ipsum");
         UserManager.getInstance().registerUser("public_user", "public@public.com", "123456789");
         UserManager.getInstance().login("public_user", "123456789");
-        //ReviewForm reviewForm = new ReviewForm(course);
-        ProfessorAddCourse proAddCourse = new ProfessorAddCourse(course);
+
         
-        //layout.addComponent(reviewForm);
-        layout.addComponent(proAddCourse);
-        
-        setContent(layout);
+        Navigator.registerNavigator(this);
+        Navigator.registerIndex(new CourseList());
+        Navigator.index();
     }
     
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
     public static class MyUIServlet extends VaadinServlet {
+    	
     }
 }
