@@ -13,22 +13,18 @@ import com.vaadin.ui.Component;
 public class Navigator {
 
     private static MyUI ui;
-    private static Component index;
     
     public static void registerNavigator(MyUI ui) {
         Navigator.ui = ui;
     }
     
-    public static void registerIndex(Component index) {
-        Navigator.index = index;
-    }
-    
+
     public static void setContent(Component content) {
         ui.setContent(content);
     }
     
     public static void index(){
-        ui.setContent(index);
+        ui.setContent(new CourseList());
     }
     
     public static Button getIndexButton() {

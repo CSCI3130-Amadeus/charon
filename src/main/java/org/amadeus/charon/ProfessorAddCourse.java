@@ -1,16 +1,12 @@
 package org.amadeus.charon;
 
-import org.amadeus.charon.data.Course;
 import org.amadeus.charon.data.CourseManager;
-import org.amadeus.charon.data.User;
-import org.amadeus.charon.data.UserManager;
 
-import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
@@ -22,12 +18,8 @@ public class ProfessorAddCourse extends VerticalLayout{
     private TextField addCourseCodeField;
     private TextArea addCourseDescField;
     private Button submitButton;
-    private Course course;
-    private ProfessorAddCourse professorAddCourse;
-    private VerticalLayout layout;
-    
-    public ProfessorAddCourse(Course course){
-    	this.course = course;
+
+    public ProfessorAddCourse(){
     	init();
     }
     
@@ -53,6 +45,18 @@ public class ProfessorAddCourse extends VerticalLayout{
     	
     	 submitButton = new Button("Submit");
          submitButton.setId("SUBMIT_BUTTON");
+         
+         submitButton.addClickListener(new ClickListener(){
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				CourseManager.getInstance().createCourse(addCourseNameField.getValue(),
+						addCourseCodeField.getValue(), addCourseDescField.getValue());
+				Navigator.index();
+				
+			}
+        	 
+         });
 
     	
     	addComponent(form);
@@ -63,6 +67,7 @@ public class ProfessorAddCourse extends VerticalLayout{
     	setSpacing(true);
     	
     }//close init()
+    
     
 
 
