@@ -35,9 +35,11 @@ public class MyUI extends UI {
         Course course = CourseManager.getInstance().getCourse(courseId);
         UserManager.getInstance().registerUser("public_user", "public@public.com", "123456789");
         UserManager.getInstance().login("public_user", "123456789");
-        ReviewForm reviewForm = new ReviewForm(course);
+        //ReviewForm reviewForm = new ReviewForm(course);
+        ProfessorAddCourse proAddCourse = new ProfessorAddCourse(course);
         
-        layout.addComponent(reviewForm);
+        //layout.addComponent(reviewForm);
+        layout.addComponent(proAddCourse);
         
         setContent(layout);
     }
