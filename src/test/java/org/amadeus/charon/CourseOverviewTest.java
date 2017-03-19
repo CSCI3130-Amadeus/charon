@@ -1,11 +1,14 @@
 package org.amadeus.charon;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 import com.vaadin.testbench.TestBenchTestCase;
+import com.vaadin.testbench.elements.LabelElement;
 
 
 public class CourseOverviewTest extends TestBenchTestCase {
@@ -20,9 +23,7 @@ public class CourseOverviewTest extends TestBenchTestCase {
 	   public void openTestUrl() {
 	        getDriver().get("http://localhost:8080");
 	        
-	        String testId = "test";
-	        //Check if layout exists
-	        //assertTrue($(VerticalLayoutElement.class).id("cop").exists());
+	        assertNotNull($(LabelElement.class).id("cop"));
 	        
 	    }
 	      

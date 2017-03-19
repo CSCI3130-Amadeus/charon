@@ -157,7 +157,7 @@
 			    <configuration>
 			        <excludes>
 			            <exclude>**/ReviewCourseUITest.java</exclude>
-			            <exclude>**/BenchTest.java</exclude>
+			            <exclude>**/CourseOverviewTest.java</exclude>
 			        </excludes>
 			    </configuration>
 		    </plugin>

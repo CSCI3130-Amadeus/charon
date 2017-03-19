@@ -9,13 +9,12 @@ public class ReviewManager {
 
     public static final String PERSISTENCE_UNIT = "charon_db";
 
-    private EntityManager em;
+    private EntityManagerFactory emFactory;
   
     private static ReviewManager instance;
     
     private ReviewManager() {
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-        em = emFactory.createEntityManager();
+        emFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     }
     
     public static ReviewManager getInstance(){
@@ -26,31 +25,29 @@ public class ReviewManager {
         return instance;
     }
     
-    public long createReview(String comment, User user, Course course){
+    public boolean createReview(String comment, User user, Course course){
         
         if (!comment.equals("") && comment != null){
+        	EntityManager em = emFactory.createEntityManager();
+        	em.getTransaction().begin();
             Review review = new Review(comment, user, course);
-            
-            em.getTransaction().begin();
-            
-            Collection<Review> reviews = course.getReviews();
-            reviews.add(review);
-            review.setCourse(course);
-            course.setReviews(reviews);
-            
+            course.getReviews().add(review);
             em.merge(course);
             em.persist(review);
-            
             em.getTransaction().commit();
-            
-            return review.getId();
+            em.close();
+            return true;
         }   
-        return -1L;
+        return false;
     }
     
     
     protected Review getCourse(long id) {
-        return em.find(Review.class, id);        
+    	EntityManager em = emFactory.createEntityManager();
+    	Review review = em.find(Review.class, id);
+    	em.close();
+    	return review;
     }
+    
 
 }

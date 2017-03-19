@@ -1,6 +1,6 @@
 package org.amadeus.charon;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.Before;
@@ -27,9 +27,9 @@ public class ReviewCourseUITest extends TestBenchTestCase {
         $(TextAreaElement.class).id("COMMENT_ENTRY").setValue("This is a review!");
         $(ButtonElement.class).id("SUBMIT_BUTTON").click();
         
-        String result = $(LabelElement.class).id("RESULT").getText();
+        assertNotNull($(LabelElement.class).caption("This is a review!"));
         
-        assertEquals("Success!", result);
+        
 	}
 	
 	@After
