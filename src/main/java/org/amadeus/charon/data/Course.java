@@ -34,7 +34,7 @@ public class Course implements Serializable{
 
     @NotNull
     @Size(min = 5, max = 4096)
-    private String courseDec;
+    private String courseDesc;
     
     @OneToMany(mappedBy="course", cascade=CascadeType.ALL)
     private Collection<Review> reviews;
@@ -43,7 +43,8 @@ public class Course implements Serializable{
     public Course(String courseCode, String courseName, String courseDec) {
         super();
         this.courseCode = courseCode;
-        this.courseDec = courseDec;
+        this.courseName = courseName;
+        this.courseDesc = courseDec;
     }
     
     public Course() {}
@@ -63,6 +64,15 @@ public class Course implements Serializable{
     public String getCourseCode() {
         return courseCode;
     }
+
+	public String getCourseDesc() {
+		return courseDesc;
+	}
+
+	public String getCourseName() {
+		return courseName;
+	}
     
+	
     
 }
