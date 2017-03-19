@@ -1,66 +1,75 @@
 package org.amadeus.charon.data;
 
 import java.io.Serializable;
+import java.util.Collection;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
+public class Course implements Serializable{
+    
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -618163043918935270L;
 
-public class Course implements Serializable, Cloneable{
-	private int id;
-	private String courseCode;
-	private String courseName;
-	private String courseDesc;
-	
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	public Course(String courseCode, String courseName, String courseDesc){
-		this.courseCode = courseCode;
-		this.courseName = courseName;
-		this.courseDesc = courseDesc;
-	}
-	
+    @NotNull
+    @Size(min = 5, max = 64)
+    private String courseCode;
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getCourseCode() {
-		return courseCode;
-	}
-	public void setCourseCode(String courseCode) {
-		this.courseCode = courseCode;
-	}
-	public String getCourseName() {
-		return courseName;
-	}
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
-	}
+    @NotNull
+    @Size(min = 5, max = 64)
+    private String courseName;
+
+    @NotNull
+    @Size(min = 5, max = 4096)
+    private String courseDesc;
+    
+    @OneToMany(mappedBy="course", cascade=CascadeType.ALL)
+    private Collection<Review> reviews;
+    
+
+    public Course(String courseCode, String courseName, String courseDec) {
+        super();
+        this.courseCode = courseCode;
+        this.courseName = courseName;
+        this.courseDesc = courseDec;
+    }
+    
+    public Course() {}
+
+    public long getId() {
+        return id;
+    }
+
+    public Collection<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Collection<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
 	public String getCourseDesc() {
 		return courseDesc;
 	}
-	public void setCourseDesc(String courseDesc) {
-		this.courseDesc = courseDesc;
+
+	public String getCourseName() {
+		return courseName;
 	}
-
-	
-	public int hashCode() {
-        int result = 17;
-        result = (31*result + (int)id);
-        result = (31*result + courseName.hashCode());
-        result = (31*result + courseCode.hashCode());
-        result = (31*result + courseDesc.hashCode());
-        return result;
-    }
-
-	
 }

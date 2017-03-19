@@ -3,6 +3,8 @@
 	<persistence-unit name="charon_db" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>org.amadeus.charon.data.User</class>
+		<class>org.amadeus.charon.data.Course</class>
+		<class>org.amadeus.charon.data.Review</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
@@ -11,7 +13,7 @@
 			<property name="javax.persistence.jdbc.password" value="sa"/>
 			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
 			<property name="eclipselink.ddl-generation.output-mode" value="database"/>
-			<property name="eclipselink.logging.level" value="FINE"/> 
+	
 		</properties>
 	</persistence-unit>
 </persistence>

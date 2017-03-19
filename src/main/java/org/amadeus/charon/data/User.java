@@ -1,13 +1,15 @@
 package org.amadeus.charon.data;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -35,15 +37,25 @@ public class User implements Serializable, Cloneable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @NotNull
-    private int role;
+    @OneToMany(mappedBy="owner", cascade=CascadeType.ALL)
+    Collection<Review> reviews;
     
-    public User(String username, String email, String password, int role) {
+    // TODO: If new functionality is added for these, use
+    //       the "strategy" design pattern.
+    public enum UserType {
+        ADMIN,
+        PUBLIC
+    }
+    
+    @NotNull
+    private UserType userType;
+    
+    public User(String username, String email, String password, UserType userType) {
         super();
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.userType = userType;
     }
     
     protected User() {
@@ -52,7 +64,7 @@ public class User implements Serializable, Cloneable {
 
     public boolean isAdmin(){
         
-        return role == 0;
+        return userType == UserType.ADMIN;
     }
 
     public String getUsername() {
@@ -79,24 +91,32 @@ public class User implements Serializable, Cloneable {
         this.password = password;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
-        if (obj instanceof User) {
-            User user = (User)obj;
-            if (user.id == id) {
-                return true;
-            }
-        }
-        return false; 
+    public Collection<Review> getReviews() {
+        return reviews;
     }
 
-    @Override
-    public int hashCode() {
-        int result = 17;
-        result = (31*result + (int)id);
-        result = (31*result + username.hashCode());
-        result = (31*result + email.hashCode());
-        return result;
+    public void setReviews(Collection<Review> reviews) {
+        this.reviews = reviews;
     }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        // TODO Auto-generated method stub
+//        if (obj instanceof User) {
+//            User user = (User)obj;
+//            if (user.id == id) {
+//                return true;
+//            }
+//        }
+//        return false; 
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int result = 17;
+//        result = (31*result + (int)id);
+//        result = (31*result + username.hashCode());
+//        result = (31*result + email.hashCode());
+//        return result;
+//    }
 }
