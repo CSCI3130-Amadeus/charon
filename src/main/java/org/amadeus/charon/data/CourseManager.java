@@ -1,5 +1,6 @@
 package org.amadeus.charon.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -61,6 +62,24 @@ public class CourseManager {
         }
         // No course found. 
         return null;
+    }
+    
+    public List<Course> getCourseList() {
+    	EntityManager em = emFactory.createEntityManager();
+    	// Set up query.
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+        Root<Course> rootCourse = cq.from(Course.class);
+       
+        Query q = em.createQuery(cq);
+        
+       
+        // Get results (there should only be one.)
+        List<Course> result = q.getResultList();
+        
+        
+         
+        return result;
     }
     
     public Course getCourse(long id) {

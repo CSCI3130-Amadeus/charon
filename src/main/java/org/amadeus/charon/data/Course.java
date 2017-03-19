@@ -72,7 +72,4 @@ public class Course implements Serializable{
 	public String getCourseName() {
 		return courseName;
 	}
-    
-	
-    
 }
