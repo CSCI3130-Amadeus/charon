@@ -25,23 +25,18 @@ import com.vaadin.ui.UI;
 @Theme("mytheme")
 public class MyUI extends UI {
 
-
     public static final String PERSISTENCE_UNIT = "charon_db";  
-    
     
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-    	
-    	CourseManager.getInstance().createCourse("CSCI3130", "Software Engineering", "Lorem ipsum");
-        Course course = CourseManager.getInstance().getCourseByCode("CSCI3130");
+        CourseManager.getInstance().createCourse("CSCI3130", "Software Engineering", "Lorem ipsum");
         UserManager.getInstance().registerUser("public_user", "public@public.com", "123456789");
         UserManager.getInstance().login("public_user", "123456789");
-        setContent(new CourseList());
-
+        
+        Navigator.registerNavigator(this);
+        Navigator.registerIndex(new CourseList());
+        Navigator.index();
     }
-    
-    
-    
     
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)

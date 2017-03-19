@@ -69,15 +69,9 @@ public class CourseManager {
     	// Set up query.
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Course> cq = cb.createQuery(Course.class);
-        Root<Course> rootCourse = cq.from(Course.class);
-       
         Query q = em.createQuery(cq);
-        
-       
-        // Get results (there should only be one.)
         List<Course> result = q.getResultList();
-        
-        
+        em.close();
          
         return result;
     }

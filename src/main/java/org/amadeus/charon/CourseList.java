@@ -1,6 +1,5 @@
 package org.amadeus.charon;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.amadeus.charon.data.Course;
@@ -23,7 +22,6 @@ public class CourseList extends VerticalLayout{
 		List<Course> courselist = CourseManager.getInstance().getCourseList();
 		for(Course course : courselist){
 			addComponent(new CourseListEntry(course));
-			
 		}
 	}
 }

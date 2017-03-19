@@ -37,6 +37,7 @@ public class CourseOverview extends VerticalLayout implements Observer{
          titlebar.addComponent(courseName);
          Label courseCode = new Label(course.getCourseCode());
          Label courseDesc = new Label(course.getCourseDesc());
+         addComponents(Navigator.getIndexButton());
          addComponents(courseCode);
          addComponents(courseName);
          addComponents(courseDesc);
