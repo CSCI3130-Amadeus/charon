@@ -4,6 +4,8 @@ package org.amadeus.charon;
 import javax.servlet.annotation.WebServlet;
 
 import org.amadeus.charon.data.Course;
+import org.amadeus.charon.data.CourseManager;
+import org.amadeus.charon.data.UserManager;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -23,12 +25,16 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-    	Course course = new Course(1L, "CSCI 0002", "Course Name", "This is the testing course's desc");
+
+        long courseId = CourseManager.getInstance().createCourse("CSCI 3130", "Software Engineering", "Lorem ipsum");
+        
+        Course course = CourseManager.getInstance().getCourse(courseId);
+        UserManager.getInstance().registerUser("public_user", "public@public.com", "123456789");
+        UserManager.getInstance().login("public_user", "123456789");
+        
     	CourseOverview courseOverview = new CourseOverview(course);
-    	setContent(courseOverview);
-        
-        
-    }   
+        setContent(courseOverview);
+    }
     
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)
