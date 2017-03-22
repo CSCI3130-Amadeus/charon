@@ -1,4 +1,4 @@
-package org.amadeus.charon;
+package org.amadeus.charon.ui;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;

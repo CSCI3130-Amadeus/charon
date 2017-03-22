@@ -1,4 +1,4 @@
-package org.amadeus.charon;
+package org.amadeus.charon.ui;
 
 import org.amadeus.charon.data.Course;
 
