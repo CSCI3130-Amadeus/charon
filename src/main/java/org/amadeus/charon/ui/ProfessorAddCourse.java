@@ -13,7 +13,11 @@ import com.vaadin.ui.VerticalLayout;
 
 public class ProfessorAddCourse extends VerticalLayout{
 	
-	
+	public static final String COURSE_NAME_ID = "COURSE_NAME";
+    public static final String COURSE_CODE_ID = "COURSE_CODE";
+    public static final String COURSE_DESC_ID = "COURSE_DESC";
+    public static final String SUBMIT_ID = "SUBMIT";
+    
     private TextField addCourseNameField;
     private TextField addCourseCodeField;
     private TextArea addCourseDescField;
@@ -35,23 +39,26 @@ public class ProfessorAddCourse extends VerticalLayout{
     	FormLayout form = new FormLayout();
 
     	addCourseNameField = new TextField("Name: ");
+    	addCourseNameField.setId(COURSE_NAME_ID);
     	form.addComponent(addCourseNameField);
 
     	addCourseCodeField = new TextField("Course Code: ");
+    	addCourseCodeField.setId(COURSE_CODE_ID);
     	form.addComponent(addCourseCodeField);
     	
     	addCourseDescField = new TextArea("CourseDescription: ");
+    	addCourseDescField.setId(COURSE_DESC_ID);
     	form.addComponent(addCourseDescField);
     	
     	 submitButton = new Button("Submit");
-         submitButton.setId("SUBMIT_BUTTON");
+         submitButton.setId(SUBMIT_ID);
          
          submitButton.addClickListener(new ClickListener(){
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				CourseManager.getInstance().createCourse(addCourseNameField.getValue(),
-						addCourseCodeField.getValue(), addCourseDescField.getValue());
+				CourseManager.getInstance().createCourse(addCourseCodeField.getValue(),
+						addCourseNameField.getValue(), addCourseDescField.getValue());
 				Navigator.index();
 				
 			}

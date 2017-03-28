@@ -1,4 +1,4 @@
-package org.amadeus.charon;
+package org.amadeus.charon.ui;
 
 import static org.junit.Assert.assertNotNull;
 

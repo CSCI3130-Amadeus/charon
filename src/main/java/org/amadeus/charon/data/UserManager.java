@@ -63,6 +63,10 @@ public class UserManager {
         
     }
     
+    public void logout(){
+        authedUser = null;
+    }
+    
 
     public boolean registerUser(String username, String email, String password) {
         return register(username, email, password, UserType.PUBLIC);
