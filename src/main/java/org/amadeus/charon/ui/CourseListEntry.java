@@ -1,4 +1,4 @@
-package org.amadeus.charon;
+package org.amadeus.charon.ui;
 
 import org.amadeus.charon.data.Course;
 
@@ -20,9 +20,10 @@ public class CourseListEntry extends CustomComponent{
 	}
 	
 	private void init(){
-		Label courseLabel = new Label(course.getCourseCode());
+		setId(course.getCourseCode());
+	    Label courseLabel = new Label(course.getCourseCode());
 		Button submit = new Button("View");
-		
+		submit.setId(course.getCourseCode());
 		submit.addClickListener(new ClickListener(){
             @Override
             public void buttonClick(ClickEvent event) {

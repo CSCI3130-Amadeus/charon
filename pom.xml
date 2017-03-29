@@ -86,12 +86,6 @@
 			<artifactId>h2</artifactId>
 			<version>1.4.193</version>
 		</dependency>
-        <dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-testbench</artifactId>
-			<version>4.2.0</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
     <groupId>com.vaadin</groupId>
     <artifactId>vaadin-testbench</artifactId>
@@ -163,9 +157,7 @@
 			    <artifactId>maven-surefire-plugin</artifactId>
 			    <configuration>
 			        <excludes>
-			            <exclude>**/ReviewCourseUITest.java</exclude>
-			            <exclude>**/CourseOverviewTest.java</exclude>
-			            <exclude>**/CourseListUITest.java</exclude>
+			            <exclude>**/EndToEndTest.java</exclude>
 			        </excludes>
 			    </configuration>
 		    </plugin>

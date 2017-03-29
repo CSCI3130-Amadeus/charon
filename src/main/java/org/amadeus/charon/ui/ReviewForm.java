@@ -1,4 +1,4 @@
-package org.amadeus.charon;
+package org.amadeus.charon.ui;
 
 import java.util.ArrayList;
 import java.util.Observer;
@@ -26,6 +26,9 @@ public class ReviewForm extends CustomComponent {
     private Course course;
     private ArrayList<Observer> observers;
     
+    public static final String REVIEW_FIELD_ID = "REVIEW_FIELD";
+    public static final String REVIEW_SUBMIT_ID = "REVIEW_SUBMIT";
+    
     private static final long serialVersionUID = 1654898717111927200L;
 
     public ReviewForm(Course course) {
@@ -34,10 +37,10 @@ public class ReviewForm extends CustomComponent {
         observers = new ArrayList<Observer>();
         
         commentEntry = new TextArea("Write a review...");
-        commentEntry.setId("COMMENT_ENTRY");
+        commentEntry.setId(REVIEW_FIELD_ID);
         commentEntryLabel = new Label("Review course " + course.getCourseCode());
         submitButton = new Button("Submit");
-        submitButton.setId("SUBMIT_BUTTON");
+        submitButton.setId(REVIEW_SUBMIT_ID);
 
         submitButton.addClickListener(getSubmitButtonListener());
         

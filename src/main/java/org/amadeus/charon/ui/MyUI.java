@@ -1,4 +1,4 @@
-package org.amadeus.charon;
+package org.amadeus.charon.ui;
 
 
 import javax.servlet.annotation.WebServlet;
@@ -26,15 +26,14 @@ import com.vaadin.ui.UI;
 public class MyUI extends UI {
 
     public static final String PERSISTENCE_UNIT = "charon_db";  
-    
+
     @Override
     protected void init(VaadinRequest vaadinRequest) {       
-        UserManager.getInstance().registerUser("public_user", "public@public.com", "123456789");
-        UserManager.getInstance().login("public_user", "123456789");
-
+        UserManager.getInstance().registerUser("public_user", "public@public.com", "password");
+        UserManager.getInstance().registerAdmin("admin", "admin@public.com", "password");
         
         Navigator.registerNavigator(this);
-        Navigator.index();
+        Navigator.setContent(new UserLogin());
     }
     
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

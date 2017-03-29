@@ -1,4 +1,4 @@
-package org.amadeus.charon;
+package org.amadeus.charon.ui;
 
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -11,6 +11,8 @@ import com.vaadin.ui.Component;
  *
  */
 public class Navigator {
+    
+    public static final String HOME_ID = "HOME";
 
     private static MyUI ui;
     
@@ -29,6 +31,7 @@ public class Navigator {
     
     public static Button getIndexButton() {
         Button button = new Button("Home");
+        button.setId(HOME_ID);
         button.addClickListener(new ClickListener(){
 
             @Override

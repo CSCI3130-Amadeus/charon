@@ -1,4 +1,4 @@
-package org.amadeus.charon;
+package org.amadeus.charon.ui;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -14,6 +14,10 @@ import com.vaadin.ui.VerticalLayout;
 
 public class CourseOverview extends VerticalLayout implements Observer{
 	
+    public static final String COURSE_CODE_ID = "COURSE_CODE";
+    public static final String COURSE_NAME_ID = "COURSE_NAME";
+    public static final String COURSE_DESC_ID = "COURSE_DESC";
+    
 	private ReviewForm reviewForm;
 	
 	private Course course;
@@ -38,6 +42,11 @@ public class CourseOverview extends VerticalLayout implements Observer{
          Label courseCode = new Label(course.getCourseCode());
          Label courseDesc = new Label(course.getCourseDesc());
          addComponents(Navigator.getIndexButton());
+         
+         courseCode.setId(COURSE_CODE_ID);
+         courseName.setId(COURSE_NAME_ID);
+         courseDesc.setId(COURSE_DESC_ID);
+         
          addComponents(courseCode);
          addComponents(courseName);
          addComponents(courseDesc);
