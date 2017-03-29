@@ -157,9 +157,7 @@
 			    <artifactId>maven-surefire-plugin</artifactId>
 			    <configuration>
 			        <excludes>
-			            <exclude>**/ReviewCourseUITest.java</exclude>
-			            <exclude>**/CourseOverviewTest.java</exclude>
-			            <exclude>**/CourseListUITest.java</exclude>
+			            <exclude>**/EndToEndTest.java</exclude>
 			        </excludes>
 			    </configuration>
 		    </plugin>
