@@ -1,21 +1,8 @@
 package org.amadeus.charon.ui;
 
-import org.amadeus.charon.data.CourseManager;
-
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextArea;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.Upload;
-import com.vaadin.ui.Upload.FailedEvent;
-import com.vaadin.ui.Upload.FailedListener;
-import com.vaadin.ui.Upload.SucceededEvent;
-import com.vaadin.ui.Upload.SucceededListener;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
+import com.vaadin.ui.Button.*;
+import org.amadeus.charon.data.*;
 
 public class ProfessorAddCourse extends VerticalLayout{
 	
@@ -29,12 +16,12 @@ public class ProfessorAddCourse extends VerticalLayout{
 	public static final String SUCCESS_MESSAGE = "File uploaded successfully!";
 	
 	
-    private Label messageArea;
     private TextField addCourseNameField;
     private TextField addCourseCodeField;
     private TextArea addCourseDescField;
     private Button submitButton;
     private SyllabusUploader syllabusUploader;
+	private Label messageArea;
 
     public ProfessorAddCourse(){
     	init();
@@ -46,7 +33,7 @@ public class ProfessorAddCourse extends VerticalLayout{
     	titlebar.setWidth("100%");
     	addComponent(titlebar);
     
- 
+
     	FormLayout form = new FormLayout();
 
     	addCourseNameField = new TextField("Name: ");
@@ -56,42 +43,19 @@ public class ProfessorAddCourse extends VerticalLayout{
     	addCourseCodeField = new TextField("Course Code: ");
     	addCourseCodeField.setId(COURSE_CODE_ID);
     	form.addComponent(addCourseCodeField);
-    	
+
     	addCourseDescField = new TextArea("CourseDescription: ");
     	addCourseDescField.setId(COURSE_DESC_ID);
     	form.addComponent(addCourseDescField);
-    	
-    	
-    	syllabusUploader = new SyllabusUploader();
-    	Upload upload = new Upload("Upload Syllabus", syllabusUploader);
-    	upload.setId(UPLOAD_FIELD_ID);
-    	upload.addSucceededListener(syllabusUploader);
-    	
-    	form.addComponent(upload);
-    	
-    	messageArea = new Label("");
-    	messageArea.setId(MESSAGE_AREA);
-    	upload.addFailedListener(new FailedListener(){
-			@Override
-			public void uploadFailed(FailedEvent event) {
-				messageArea.setValue(ERROR_MESSAGE);
-			}
-    	});
-    	
-    	upload.addSucceededListener(new SucceededListener(){
 
-			@Override
-			public void uploadSucceeded(SucceededEvent event) {
-				messageArea.setValue(SUCCESS_MESSAGE);
-			}
-    		
-    	});
-    	
-    	form.addComponent(messageArea);
-    	
+
+    	syllabusUploader = new SyllabusUploader();
+		SyllabusUploadComponent syllabusUploadComponent = new SyllabusUploadComponent(syllabusUploader);
+		form.addComponent(syllabusUploadComponent);
+
     	 submitButton = new Button("Submit");
          submitButton.setId(SUBMIT_ID);
-         
+
          submitButton.addClickListener(new ClickListener(){
 
 			@Override
@@ -100,9 +64,9 @@ public class ProfessorAddCourse extends VerticalLayout{
 						addCourseNameField.getValue(), addCourseDescField.getValue(),
 						syllabusUploader.getUploadedPath());
 				Navigator.index();
-				
+
 			}
-        	 
+
          });
 
     	addComponent(form);
