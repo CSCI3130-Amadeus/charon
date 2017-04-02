@@ -31,11 +31,12 @@ public class CourseManager {
         return instance;
     }
     
-    public void createCourse(String courseCode, String courseName, String courseDesc){
+    public void createCourse(String courseCode, String courseName, String courseDesc, String sylPath){
     	EntityManager em = emFactory.createEntityManager();
     	
         em.getTransaction().begin();
         Course course = new Course(courseCode, courseName, courseDesc);
+        course.setSyllabusPath(sylPath);
         em.persist(course);
         em.getTransaction().commit();
         em.close();

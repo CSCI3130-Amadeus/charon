@@ -17,7 +17,7 @@ public class ReviewCourseTest {
     @Before
     public void setupTest(){
         UserManager.getInstance().registerUser(username, "fake@fake.com", "passssword");
-        CourseManager.getInstance().createCourse(courseCode, "Software Engineering", "Lorem Ipsum");
+        CourseManager.getInstance().createCourse(courseCode, "Software Engineering", "Lorem Ipsum", null);
     }
 
     

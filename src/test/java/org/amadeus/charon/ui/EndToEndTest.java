@@ -20,6 +20,7 @@ import com.vaadin.testbench.elements.LabelElement;
 import com.vaadin.testbench.elements.PasswordFieldElement;
 import com.vaadin.testbench.elements.TextAreaElement;
 import com.vaadin.testbench.elements.TextFieldElement;
+import com.vaadin.testbench.elements.UploadElement;
 
 public class EndToEndTest extends TestBenchTestCase{
 
@@ -33,8 +34,8 @@ public class EndToEndTest extends TestBenchTestCase{
     private static final String COURSE_NAME = "Software Engineering";
     private static final String COURSE_DESC = "Lorem ipsum si dolor amet";
     
-    
-    
+    private static final String PNG_PATH = "src/main/resources/test.png";
+    private static final String PDF_PATH = "src/main/resources/test.pdf";
             
     @Rule
     public ScreenshotOnFailureRule screenshotOnFailureRule =
@@ -164,10 +165,19 @@ public class EndToEndTest extends TestBenchTestCase{
 	/**
 	 * State state: Add course page
 	 * End state: Course list page.
+	 * 
+	 * 
+	 * NOTE: We wrote this test as what *should* happen... if testbench supported
+	 * the upload element properly. Testbench doesn't know how to set the file path,
+	 * only how to click the button. 
 	 */
 	private void addCourse() {
 	    
         System.out.println("Adding course " + COURSE_CODE + "...");
+        
+//        uploadBadFile();
+//        uploadGoodFile();
+        
         try {
     	    $(TextFieldElement.class).id(ProfessorAddCourse.COURSE_CODE_ID).setValue(COURSE_CODE);
     	    $(TextFieldElement.class).id(ProfessorAddCourse.COURSE_NAME_ID).setValue(COURSE_NAME);
@@ -179,6 +189,50 @@ public class EndToEndTest extends TestBenchTestCase{
            fail();
         }
     }
+	
+	/**
+	 * Start state: add course page
+	 * End state: add course page
+	 * 
+	 * NOTE: We wrote this test as what *should* happen... if testbench supported
+	 * the upload element properly. Testbench doesn't know how to set the file path,
+	 * only how to click the button. 
+	 */
+	private void uploadBadFile(){
+		System.out.println("Uploading " + PNG_PATH + " to course " + COURSE_CODE);
+		
+		try {
+    	    $(UploadElement.class).id(ProfessorAddCourse.UPLOAD_FIELD_ID).sendKeys(PNG_PATH);   	    
+    	    $(UploadElement.class).id(ProfessorAddCourse.UPLOAD_FIELD_ID).click(); 
+    	    boolean result = $(LabelElement.class).id(ProfessorAddCourse.MESSAGE_AREA)
+    	    		.getText().equals(ProfessorAddCourse.ERROR_MESSAGE);
+    	    assertTrue(result);
+		}
+        catch (NoSuchElementException e){
+           e.printStackTrace();
+           fail();
+        }
+	}
+
+	/**
+	 * Start state: add course page
+	 * End state: add course page
+	 */
+	private void uploadGoodFile(){
+		System.out.println("Uploading " + PDF_PATH + " to course " + COURSE_CODE);
+		
+		try {
+    	    $(UploadElement.class).id(ProfessorAddCourse.UPLOAD_FIELD_ID).sendKeys(PDF_PATH);
+    	    $(UploadElement.class).id(ProfessorAddCourse.UPLOAD_FIELD_ID).click(); 
+    	    boolean result = $(LabelElement.class).id(ProfessorAddCourse.MESSAGE_AREA)
+    	    		.getText().equals(ProfessorAddCourse.SUCCESS_MESSAGE);
+    	    assertTrue(result);
+		}
+        catch (NoSuchElementException e){
+           e.printStackTrace();
+           fail();
+        }
+	}
 	
 	/**
 	 * Start state: Course list page
