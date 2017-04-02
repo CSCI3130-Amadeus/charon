@@ -1,9 +1,8 @@
 package org.amadeus.charon.ui;
 
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Component;
+import com.vaadin.ui.*;
+import com.vaadin.ui.Button.*;
+
 /**
  * A class used for navigation in the project.
  * FIXME: THis is really clugy and bad.
@@ -23,6 +22,10 @@ public class Navigator {
 
     public static void setContent(Component content) {
         ui.setContent(content);
+    }
+
+    public static void addWindow(Window window) {
+        ui.addWindow(window);
     }
     
     public static void index(){

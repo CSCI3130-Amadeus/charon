@@ -188,7 +188,7 @@
 		  <executions>
 		    <execution>
 		      <id>generate-sources</id>
-		      <phase>package</phase>
+		      <phase>generate-resources</phase>
 		      <configuration>
 		        <tasks>
 		          <mkdir dir="target/upload"/>

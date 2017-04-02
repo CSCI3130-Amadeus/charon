@@ -1,16 +1,12 @@
 package org.amadeus.charon.ui;
 
+import com.vaadin.ui.*;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import org.amadeus.charon.data.Course;
 import org.amadeus.charon.data.Review;
-
-import com.vaadin.ui.Component;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
 
 public class CourseOverview extends VerticalLayout implements Observer{
 	
@@ -41,8 +37,10 @@ public class CourseOverview extends VerticalLayout implements Observer{
          titlebar.addComponent(courseName);
          Label courseCode = new Label(course.getCourseCode());
          Label courseDesc = new Label(course.getCourseDesc());
+
+
          addComponents(Navigator.getIndexButton());
-         
+
          courseCode.setId(COURSE_CODE_ID);
          courseName.setId(COURSE_NAME_ID);
          courseDesc.setId(COURSE_DESC_ID);
@@ -50,9 +48,20 @@ public class CourseOverview extends VerticalLayout implements Observer{
          addComponents(courseCode);
          addComponents(courseName);
          addComponents(courseDesc);
+
+		if (course.getSyllabusPath() != null) {
+			Button syllabusButton = new Button("View Syllabus");
+			syllabusButton.addClickListener(new Button.ClickListener() {
+				@Override
+				public void buttonClick(Button.ClickEvent clickEvent) {
+					Navigator.addWindow(new SyllabusPage(course.getSyllabusPath()));
+				}
+			});
+            addComponent(syllabusButton);
+		}
+
          addComponents(reviewForm);
-         
-         
+
          for(Component component : listOfReviews){
         	 addComponent(component);
          }
