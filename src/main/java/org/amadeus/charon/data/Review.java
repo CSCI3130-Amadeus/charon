@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.vaadin.ui.ListSelect;
+
 @Entity
 public class Review implements Serializable {
 
@@ -32,12 +34,16 @@ public class Review implements Serializable {
     @NotNull
     @Size(min = 5, max = 4096)
     private String comment;
+    
+    @NotNull
+    private String rating;
 
     
-    public Review(String comment, User owner, Course course) {
+    public Review(String comment, User owner, Course course, String rating) {
         this.comment = comment;
         this.owner = owner;
         this.course = course;
+        this.rating = rating;
     }
     
     public Review() {
@@ -63,6 +69,14 @@ public class Review implements Serializable {
     public void setComment(String comment) {
         this.comment = comment;
     }
+    
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+    
+    public void setRating(String rating){
+    	this.rating = rating;
+    }
 
     public String getComment() {
         return comment;
@@ -71,8 +85,9 @@ public class Review implements Serializable {
     public Course getCourse() {
         return course;
     }
-
-    public void setCourse(Course course) {
-        this.course = course;
+    
+    public String getRating() {
+    	return rating;
     }
+
 }

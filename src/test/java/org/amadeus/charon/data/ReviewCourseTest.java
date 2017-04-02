@@ -27,8 +27,9 @@ public class ReviewCourseTest {
         User user = UserManager.getInstance().getUser(username);
         Course course = CourseManager.getInstance().getCourseByCode(courseCode);
         String comment = "Lorem ipsum si dolor amet";
+        String rating = "2";
         
-        ReviewManager.getInstance().createReview(comment, user, course);
+        ReviewManager.getInstance().createReview(comment, user, course, rating);
         
         Course loadedFromDB = CourseManager.getInstance().getCourseByCode(courseCode);
         
@@ -41,7 +42,9 @@ public class ReviewCourseTest {
         User user = UserManager.getInstance().getUser(username);
         Course course = CourseManager.getInstance().getCourseByCode(courseCode);
         String comment = "";
+        String rating = "";
         
-        assertFalse(ReviewManager.getInstance().createReview(comment, user, course));
+        
+        assertFalse(ReviewManager.getInstance().createReview(comment, user, course, rating));
     }
 }

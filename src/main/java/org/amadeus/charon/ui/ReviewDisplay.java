@@ -8,6 +8,7 @@ import com.vaadin.ui.VerticalLayout;
 
 public class ReviewDisplay extends CustomComponent{
 	private Label description;
+	private Label rating;
 	private Label userName;
 	private Review review;
 	
@@ -19,8 +20,10 @@ public class ReviewDisplay extends CustomComponent{
 	private void init(){
 		VerticalLayout layout = new VerticalLayout();
 		description = new Label(review.getComment());
+		rating = new Label("Rating: " + review.getRating());
 		userName = new Label(review.getOwner().getUsername());
 		layout.addComponent(description);
+		layout.addComponent(rating);
 		layout.addComponent(userName);
 		
 		setCompositionRoot(layout);

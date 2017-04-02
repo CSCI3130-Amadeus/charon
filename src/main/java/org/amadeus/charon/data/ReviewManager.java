@@ -5,6 +5,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.vaadin.ui.ListSelect;
+
 public class ReviewManager {
 
     public static final String PERSISTENCE_UNIT = "charon_db";
@@ -25,12 +27,12 @@ public class ReviewManager {
         return instance;
     }
     
-    public boolean createReview(String comment, User user, Course course){
+    public boolean createReview(String comment, User user, Course course, String rating){
         
         if (!comment.equals("") && comment != null){
         	EntityManager em = emFactory.createEntityManager();
         	em.getTransaction().begin();
-            Review review = new Review(comment, user, course);
+            Review review = new Review(comment, user, course, rating);
             course.getReviews().add(review);
             em.merge(course);
             em.persist(review);
