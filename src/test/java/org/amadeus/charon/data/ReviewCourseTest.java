@@ -1,12 +1,9 @@
 package org.amadeus.charon.data;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import org.junit.*;
 
-import org.junit.Before;
-import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class ReviewCourseTest {
     
@@ -14,10 +11,12 @@ public class ReviewCourseTest {
     private static final String username = "john";
     private static final String courseCode = "TEST3130";
 
+    private static final String SYLLABUS_PATH = "target/upload/test.pdf";
+
     @Before
     public void setupTest(){
         UserManager.getInstance().registerUser(username, "fake@fake.com", "passssword");
-        CourseManager.getInstance().createCourse(courseCode, "Software Engineering", "Lorem Ipsum");
+        CourseManager.getInstance().createCourse(courseCode, "Software Engineering", "Lorem Ipsum", SYLLABUS_PATH);
     }
 
     
@@ -33,6 +32,12 @@ public class ReviewCourseTest {
         Course loadedFromDB = CourseManager.getInstance().getCourseByCode(courseCode);
         
         assertTrue(loadedFromDB.getReviews().size() >= 1);
+    }
+
+    @Test
+    public void confirmPathTest() {
+        Course course = CourseManager.getInstance().getCourseByCode(courseCode);
+        assertTrue(course.getSyllabusPath().equals(SYLLABUS_PATH));
     }
     
     @Test

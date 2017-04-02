@@ -1,15 +1,8 @@
 package org.amadeus.charon.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import java.util.*;
+import javax.persistence.*;
+import javax.persistence.criteria.*;
 
 public class CourseManager {
 
@@ -31,11 +24,12 @@ public class CourseManager {
         return instance;
     }
     
-    public void createCourse(String courseCode, String courseName, String courseDesc){
+    public void createCourse(String courseCode, String courseName, String courseDesc, String sylPath){
     	EntityManager em = emFactory.createEntityManager();
     	
         em.getTransaction().begin();
         Course course = new Course(courseCode, courseName, courseDesc);
+        course.setSyllabusPath(sylPath);
         em.persist(course);
         em.getTransaction().commit();
         em.close();

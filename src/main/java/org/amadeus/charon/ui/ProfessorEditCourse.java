@@ -18,7 +18,8 @@ public class ProfessorEditCourse extends VerticalLayout{
     public static final String COURSE_CODE_ID = "COURSE_CODE";
     public static final String COURSE_DESC_ID = "COURSE_DESC";
     public static final String SUBMIT_ID = "SUBMIT";
-    
+
+    private SyllabusUploader syllabusUploader;
     private TextField editCourseNameField;
     private TextField editCourseCodeField;
     private TextArea editCourseDescField;
@@ -32,12 +33,10 @@ public class ProfessorEditCourse extends VerticalLayout{
     
     private void init(){
     	
-    	
     	HorizontalLayout titlebar = new HorizontalLayout();
     	titlebar.setWidth("100%");
     	addComponent(titlebar);
-    
- 
+
     	FormLayout form = new FormLayout();
 
     	editCourseNameField = new TextField("Name: ");
@@ -54,7 +53,11 @@ public class ProfessorEditCourse extends VerticalLayout{
     	editCourseDescField.setId(COURSE_DESC_ID);
     	editCourseDescField.setValue(course.getCourseDesc());
     	form.addComponent(editCourseDescField);
-    	
+
+    	syllabusUploader = new SyllabusUploader();
+		SyllabusUploadComponent syllabusUploadComponent = new SyllabusUploadComponent(syllabusUploader);
+		form.addComponent(syllabusUploadComponent);
+
     	 submitButton = new Button("Update");
          submitButton.setId(SUBMIT_ID);
          
@@ -70,11 +73,9 @@ public class ProfessorEditCourse extends VerticalLayout{
         	 
          });
 
-    	
     	addComponent(form);
     	addComponent(submitButton);
-    	
-    
+
     	setMargin(true);
     	setSpacing(true);
     	

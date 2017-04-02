@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -36,10 +37,17 @@ public class Course implements Serializable{
     @Size(min = 5, max = 4096)
     private String courseDesc;
     
+    @Null
+    @Size(min = 5, max = 4096)
+    private String syllabusPath;
+    
+    
+    
+    
     @OneToMany(mappedBy="course", cascade=CascadeType.ALL)
     private Collection<Review> reviews;
+        
     
-
     public Course(String courseCode, String courseName, String courseDesc) {
         super();
         this.courseCode = courseCode;
@@ -86,4 +94,14 @@ public class Course implements Serializable{
 	public String getCourseName() {
 		return courseName;
 	}
+
+	public String getSyllabusPath() {
+		return syllabusPath;
+	}
+
+	public void setSyllabusPath(String syllabusPath) {
+		this.syllabusPath = syllabusPath;
+	}
+	
+	
 }
