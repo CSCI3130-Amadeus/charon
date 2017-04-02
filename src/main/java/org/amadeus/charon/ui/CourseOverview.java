@@ -7,16 +7,20 @@ import java.util.Observer;
 import org.amadeus.charon.data.Course;
 import org.amadeus.charon.data.Review;
 
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 
 public class CourseOverview extends VerticalLayout implements Observer{
 	
     public static final String COURSE_CODE_ID = "COURSE_CODE";
     public static final String COURSE_NAME_ID = "COURSE_NAME";
     public static final String COURSE_DESC_ID = "COURSE_DESC";
+    public static final String EDIT_COURSE_ID = "EDIT_COURSE";
     
 	private ReviewForm reviewForm;
 	
@@ -50,9 +54,22 @@ public class CourseOverview extends VerticalLayout implements Observer{
          addComponents(courseCode);
          addComponents(courseName);
          addComponents(courseDesc);
+         
+         Button button = new Button("Edit Course: ");
+	     button.setId(EDIT_COURSE_ID);
+	     addComponent(button);
+         
+	     button.addClickListener(new ClickListener(){
+	    	 @Override
+	         public void buttonClick(ClickEvent event) {
+	    		 Navigator.setContent(new ProfessorEditCourse(course)); 
+	         }
+	            
+	     });  
+         
          addComponents(reviewForm);
          
-         
+	     
          for(Component component : listOfReviews){
         	 addComponent(component);
          }
