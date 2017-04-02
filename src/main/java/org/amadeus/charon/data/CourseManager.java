@@ -41,6 +41,20 @@ public class CourseManager {
         em.close();
     }
     
+    public void editCourse(Course course, String courseCode, String courseName, String courseDesc){
+    	EntityManager em = emFactory.createEntityManager();
+    	em.getTransaction().begin();
+    	
+    	course.setCourseCode(courseCode);
+    	course.setCourseName(courseName);
+    	course.setCourseDesc(courseDesc);
+    	
+    	em.merge(course);
+    	em.getTransaction().commit();
+    	em.close();
+    	
+    }
+    
     // THIS IS A DEBUGGING METHOD. DO NOT USE IT FOR REAL STUFF.
     // THIS MEANS YOU.
     public Course getCourseByCode(String courseCode) {

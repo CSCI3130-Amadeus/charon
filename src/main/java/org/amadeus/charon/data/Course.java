@@ -63,7 +63,19 @@ public class Course implements Serializable{
         this.reviews = reviews;
     }
 
-    public String getCourseCode() {
+    public void setCourseCode(String courseCode){
+    	this.courseCode = courseCode;
+    }
+    
+    public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	public void setCourseDesc(String courseDesc) {
+		this.courseDesc = courseDesc;
+	}
+
+	public String getCourseCode() {
         return courseCode;
     }
 
