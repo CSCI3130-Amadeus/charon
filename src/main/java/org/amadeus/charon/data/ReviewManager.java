@@ -1,6 +1,4 @@
 package org.amadeus.charon.data;
-import java.util.Collection;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -25,12 +23,12 @@ public class ReviewManager {
         return instance;
     }
     
-    public boolean createReview(String comment, User user, Course course){
+    public boolean createReview(String comment, User user, Course course, int rating){
         
         if (!comment.equals("") && comment != null){
         	EntityManager em = emFactory.createEntityManager();
         	em.getTransaction().begin();
-            Review review = new Review(comment, user, course);
+            Review review = new Review(comment, user, course, rating);
             course.getReviews().add(review);
             em.merge(course);
             em.persist(review);
