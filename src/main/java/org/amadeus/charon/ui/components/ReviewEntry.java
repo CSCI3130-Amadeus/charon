@@ -1,4 +1,4 @@
-package org.amadeus.charon.ui;
+package org.amadeus.charon.ui.components;
 
 import org.amadeus.charon.data.Review;
 
@@ -6,7 +6,7 @@ import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
-public class ReviewDisplay extends CustomComponent{
+public class ReviewEntry extends CustomComponent{
 	/**
 	 * 
 	 */
@@ -16,20 +16,21 @@ public class ReviewDisplay extends CustomComponent{
 	private Label userName;
 	private Review review;
 	
-	public ReviewDisplay(Review review){
+	public ReviewEntry(Review review){
 		this.review = review;
 		init();
 	}
 	
 	private void init(){
 		VerticalLayout layout = new VerticalLayout();
+		userName = new Label(review.getOwner().getUsername());
 		description = new Label(review.getComment());
 		rating = new Label("Rating: " + review.getRating());
-		userName = new Label(review.getOwner().getUsername());
-		layout.addComponent(description);
-		layout.addComponent(rating);
+
 		layout.addComponent(userName);
-		
+		layout.addComponent(rating);
+		layout.addComponent(description);
+
 		setCompositionRoot(layout);
 		setSizeFull();
 

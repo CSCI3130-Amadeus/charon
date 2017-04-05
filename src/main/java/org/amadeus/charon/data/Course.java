@@ -41,13 +41,12 @@ public class Course implements Serializable{
     @Size(min = 5, max = 4096)
     private String syllabusPath;
     
-    
-    
-    
     @OneToMany(mappedBy="course", cascade=CascadeType.ALL)
     private Collection<Review> reviews;
         
-    
+    @OneToMany(mappedBy="course", cascade=CascadeType.ALL)
+    private Collection<AltTextbook> altTextbooks;
+
     public Course(String courseCode, String courseName, String courseDesc) {
         super();
         this.courseCode = courseCode;
@@ -65,6 +64,10 @@ public class Course implements Serializable{
 
     public Collection<Review> getReviews() {
         return reviews;
+    }
+
+    public Collection<AltTextbook> getAltTextbooks() {
+        return altTextbooks;
     }
 
     public void setReviews(Collection<Review> reviews) {

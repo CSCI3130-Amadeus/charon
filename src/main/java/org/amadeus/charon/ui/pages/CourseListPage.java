@@ -1,4 +1,4 @@
-package org.amadeus.charon.ui;
+package org.amadeus.charon.ui.pages;
 
 import java.util.List;
 
@@ -11,13 +11,15 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import org.amadeus.charon.ui.*;
+import org.amadeus.charon.ui.components.*;
 
 
-public class CourseList extends VerticalLayout{
+public class CourseListPage extends VerticalLayout{
 
     public static final String ADD_COURSE_ID = "ADD_COURSE";
     
-	public CourseList(){
+	public CourseListPage(){
 		init();
 	}
 	
@@ -40,7 +42,7 @@ public class CourseList extends VerticalLayout{
 
 	            @Override
 	            public void buttonClick(ClickEvent event) {
-	                Navigator.setContent(new ProfessorAddCourse()); 
+	                Navigator.setContent(new CourseCreatePage());
 	            }
 	            
 	        });   

@@ -36,7 +36,6 @@ public class Review implements Serializable {
     @NotNull
     private int rating;
 
-    
     public Review(String comment, User owner, Course course, int rating) {
         this.comment = comment;
         this.owner = owner;

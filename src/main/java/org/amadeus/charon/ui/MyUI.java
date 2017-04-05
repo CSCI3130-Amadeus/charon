@@ -3,8 +3,6 @@ package org.amadeus.charon.ui;
 
 import javax.servlet.annotation.WebServlet;
 
-import org.amadeus.charon.data.Course;
-import org.amadeus.charon.data.CourseManager;
 import org.amadeus.charon.data.UserManager;
 
 import com.vaadin.annotations.Theme;
@@ -12,7 +10,7 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
-
+import org.amadeus.charon.ui.pages.*;
 
 
 /**
@@ -33,7 +31,7 @@ public class MyUI extends UI {
         UserManager.getInstance().registerAdmin("admin", "admin@public.com", "password");
         
         Navigator.registerNavigator(this);
-        Navigator.setContent(new UserLogin());
+        Navigator.setContent(new UserLoginPage());
     }
     
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

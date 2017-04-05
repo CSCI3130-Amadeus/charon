@@ -1,4 +1,4 @@
-package org.amadeus.charon.ui;
+package org.amadeus.charon.ui.components;
 
 import org.amadeus.charon.data.Course;
 
@@ -8,6 +8,8 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import org.amadeus.charon.ui.*;
+import org.amadeus.charon.ui.pages.*;
 
 public class CourseListEntry extends CustomComponent{
 	
@@ -28,7 +30,7 @@ public class CourseListEntry extends CustomComponent{
             @Override
             public void buttonClick(ClickEvent event) {
                 // TODO Auto-generated method stub
-                Navigator.setContent(new CourseOverview(course));
+                Navigator.setContent(new CourseOverviewPage(course));
             }
 		    
 		});

@@ -1,4 +1,4 @@
-package org.amadeus.charon.ui;
+package org.amadeus.charon.ui.uploaders;
 
 import java.io.File;
 import java.io.FileNotFoundException;
