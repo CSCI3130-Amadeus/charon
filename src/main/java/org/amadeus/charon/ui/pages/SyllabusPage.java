@@ -1,4 +1,4 @@
-package org.amadeus.charon.ui;
+package org.amadeus.charon.ui.pages;
 
 import com.vaadin.server.*;
 import com.vaadin.ui.*;

@@ -1,4 +1,4 @@
-package org.amadeus.charon.ui;
+package org.amadeus.charon.ui.components;
 
 import org.amadeus.charon.data.UserManager;
 
@@ -8,6 +8,8 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
+import org.amadeus.charon.ui.*;
+import org.amadeus.charon.ui.pages.*;
 
 public class LogoutBar extends CustomComponent {
 
@@ -32,7 +34,7 @@ public class LogoutBar extends CustomComponent {
             @Override
             public void buttonClick(ClickEvent event) {
                 UserManager.getInstance().logout();
-                Navigator.setContent(new UserLogin());
+                Navigator.setContent(new UserLoginPage());
             }
             
         });

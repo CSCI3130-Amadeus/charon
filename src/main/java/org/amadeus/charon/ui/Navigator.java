@@ -2,6 +2,7 @@ package org.amadeus.charon.ui;
 
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.*;
+import org.amadeus.charon.ui.pages.*;
 
 /**
  * A class used for navigation in the project.
@@ -29,7 +30,7 @@ public class Navigator {
     }
     
     public static void index(){
-        ui.setContent(new CourseList());
+        ui.setContent(new CourseListPage());
     }
     
     public static Button getIndexButton() {

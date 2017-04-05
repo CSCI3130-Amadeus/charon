@@ -33,7 +33,8 @@ public class Review implements Serializable {
     @Size(min = 5, max = 4096)
     private String comment;
 
-    
+
+
     public Review(String comment, User owner, Course course) {
         this.comment = comment;
         this.owner = owner;

@@ -1,4 +1,4 @@
-package org.amadeus.charon.ui;
+package org.amadeus.charon.ui.components;
 
 import java.util.ArrayList;
 import java.util.Observer;

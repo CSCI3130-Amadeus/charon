@@ -5,6 +5,8 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import org.amadeus.charon.ui.components.*;
+import org.amadeus.charon.ui.pages.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -87,9 +89,9 @@ public class EndToEndTest extends TestBenchTestCase{
 	   
 	   System.out.println("Logging in as admin...");
 	   try {
-	       $(TextFieldElement.class).id(UserLogin.USERNAME_ID).setValue(ADMIN_USERNAME);
-           $(PasswordFieldElement.class).id(UserLogin.PASSWORD_ID).setValue(ADMIN_PASSWORD);
-           $(ButtonElement.class).id(UserLogin.SUBMIT_ID).click();
+	       $(TextFieldElement.class).id(UserLoginPage.USERNAME_ID).setValue(ADMIN_USERNAME);
+           $(PasswordFieldElement.class).id(UserLoginPage.PASSWORD_ID).setValue(ADMIN_PASSWORD);
+           $(ButtonElement.class).id(UserLoginPage.SUBMIT_ID).click();
 	   }
 	   catch (NoSuchElementException e){
 	       e.printStackTrace();
@@ -106,9 +108,9 @@ public class EndToEndTest extends TestBenchTestCase{
        
        System.out.println("Logging in as public...");
        try {
-           $(TextFieldElement.class).id(UserLogin.USERNAME_ID).setValue(PUBLIC_USERNAME);
-           $(PasswordFieldElement.class).id(UserLogin.PASSWORD_ID).setValue(PUBLIC_PASSWORD);
-           $(ButtonElement.class).id(UserLogin.SUBMIT_ID).click();
+           $(TextFieldElement.class).id(UserLoginPage.USERNAME_ID).setValue(PUBLIC_USERNAME);
+           $(PasswordFieldElement.class).id(UserLoginPage.PASSWORD_ID).setValue(PUBLIC_PASSWORD);
+           $(ButtonElement.class).id(UserLoginPage.SUBMIT_ID).click();
        }
        catch (NoSuchElementException e){
            e.printStackTrace();
@@ -154,7 +156,7 @@ public class EndToEndTest extends TestBenchTestCase{
 	    System.out.println("Navigating to add course page...");
 	    
 	    try {
-	        $(ButtonElement.class).id(CourseList.ADD_COURSE_ID).click();
+	        $(ButtonElement.class).id(CourseListPage.ADD_COURSE_ID).click();
         }
         catch (NoSuchElementException e){
             e.printStackTrace();
@@ -179,10 +181,10 @@ public class EndToEndTest extends TestBenchTestCase{
 //        uploadGoodFile();
         
         try {
-    	    $(TextFieldElement.class).id(ProfessorAddCourse.COURSE_CODE_ID).setValue(COURSE_CODE);
-    	    $(TextFieldElement.class).id(ProfessorAddCourse.COURSE_NAME_ID).setValue(COURSE_NAME);
-    	    $(TextAreaElement.class).id(ProfessorAddCourse.COURSE_DESC_ID).setValue(COURSE_DESC);
-    	    $(ButtonElement.class).id(ProfessorAddCourse.SUBMIT_ID).click();    
+    	    $(TextFieldElement.class).id(CourseCreatePage.COURSE_CODE_ID).setValue(COURSE_CODE);
+    	    $(TextFieldElement.class).id(CourseCreatePage.COURSE_NAME_ID).setValue(COURSE_NAME);
+    	    $(TextAreaElement.class).id(CourseCreatePage.COURSE_DESC_ID).setValue(COURSE_DESC);
+    	    $(ButtonElement.class).id(CourseCreatePage.SUBMIT_ID).click();
         }
         catch (NoSuchElementException e){
            e.printStackTrace();
@@ -202,10 +204,10 @@ public class EndToEndTest extends TestBenchTestCase{
 		System.out.println("Uploading " + PNG_PATH + " to course " + COURSE_CODE);
 		
 		try {
-    	    $(UploadElement.class).id(ProfessorAddCourse.UPLOAD_FIELD_ID).sendKeys(PNG_PATH);   	    
-    	    $(UploadElement.class).id(ProfessorAddCourse.UPLOAD_FIELD_ID).click(); 
-    	    boolean result = $(LabelElement.class).id(ProfessorAddCourse.MESSAGE_AREA)
-    	    		.getText().equals(ProfessorAddCourse.ERROR_MESSAGE);
+    	    $(UploadElement.class).id(CourseCreatePage.UPLOAD_FIELD_ID).sendKeys(PNG_PATH);
+    	    $(UploadElement.class).id(CourseCreatePage.UPLOAD_FIELD_ID).click();
+    	    boolean result = $(LabelElement.class).id(CourseCreatePage.MESSAGE_AREA)
+    	    		.getText().equals(CourseCreatePage.ERROR_MESSAGE);
     	    assertTrue(result);
 		}
         catch (NoSuchElementException e){
@@ -222,10 +224,10 @@ public class EndToEndTest extends TestBenchTestCase{
 		System.out.println("Uploading " + PDF_PATH + " to course " + COURSE_CODE);
 		
 		try {
-    	    $(UploadElement.class).id(ProfessorAddCourse.UPLOAD_FIELD_ID).sendKeys(PDF_PATH);
-    	    $(UploadElement.class).id(ProfessorAddCourse.UPLOAD_FIELD_ID).click(); 
-    	    boolean result = $(LabelElement.class).id(ProfessorAddCourse.MESSAGE_AREA)
-    	    		.getText().equals(ProfessorAddCourse.SUCCESS_MESSAGE);
+    	    $(UploadElement.class).id(CourseCreatePage.UPLOAD_FIELD_ID).sendKeys(PDF_PATH);
+    	    $(UploadElement.class).id(CourseCreatePage.UPLOAD_FIELD_ID).click();
+    	    boolean result = $(LabelElement.class).id(CourseCreatePage.MESSAGE_AREA)
+    	    		.getText().equals(CourseCreatePage.SUCCESS_MESSAGE);
     	    assertTrue(result);
 		}
         catch (NoSuchElementException e){
@@ -263,9 +265,9 @@ public class EndToEndTest extends TestBenchTestCase{
 	    
 	    System.out.println("Checking content on " + courseCode + " overview");
 	    try {
-	        String pageCourseCode = $(LabelElement.class).id(CourseOverview.COURSE_CODE_ID).getText();
-	        String pageCourseName = $(LabelElement.class).id(CourseOverview.COURSE_NAME_ID).getText();
-	        String pageCourseDesc = $(LabelElement.class).id(CourseOverview.COURSE_DESC_ID).getText();
+	        String pageCourseCode = $(LabelElement.class).id(CourseOverviewPage.COURSE_CODE_ID).getText();
+	        String pageCourseName = $(LabelElement.class).id(CourseOverviewPage.COURSE_NAME_ID).getText();
+	        String pageCourseDesc = $(LabelElement.class).id(CourseOverviewPage.COURSE_DESC_ID).getText();
 	            
 	        boolean result = pageCourseCode.equals(courseCode);
 	        

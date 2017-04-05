@@ -1,10 +1,13 @@
-package org.amadeus.charon.ui;
+package org.amadeus.charon.ui.pages;
 
 import com.vaadin.ui.*;
 import com.vaadin.ui.Button.*;
 import org.amadeus.charon.data.*;
+import org.amadeus.charon.ui.*;
+import org.amadeus.charon.ui.components.*;
+import org.amadeus.charon.ui.uploaders.*;
 
-public class ProfessorAddCourse extends VerticalLayout{
+public class CourseCreatePage extends VerticalLayout{
 	
 	public static final String COURSE_NAME_ID = "COURSE_NAME";
     public static final String COURSE_CODE_ID = "COURSE_CODE";
@@ -23,7 +26,7 @@ public class ProfessorAddCourse extends VerticalLayout{
     private SyllabusUploader syllabusUploader;
 	private Label messageArea;
 
-    public ProfessorAddCourse(){
+    public CourseCreatePage(){
     	init();
     }
     

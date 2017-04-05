@@ -1,4 +1,4 @@
-package org.amadeus.charon.ui;
+package org.amadeus.charon.ui.pages;
 
 import org.amadeus.charon.data.Course;
 import org.amadeus.charon.data.CourseManager;
@@ -11,8 +11,11 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import org.amadeus.charon.ui.*;
+import org.amadeus.charon.ui.components.*;
+import org.amadeus.charon.ui.uploaders.*;
 
-public class ProfessorEditCourse extends VerticalLayout{
+public class CourseEditPage extends VerticalLayout{
 
 	public static final String COURSE_NAME_ID = "COURSE_NAME";
     public static final String COURSE_CODE_ID = "COURSE_CODE";
@@ -26,7 +29,7 @@ public class ProfessorEditCourse extends VerticalLayout{
     private Button submitButton;
     private Course course;
 
-    public ProfessorEditCourse(Course course){
+    public CourseEditPage(Course course){
     	this.course = course;
     	init();
     }

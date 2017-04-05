@@ -1,9 +1,10 @@
-package org.amadeus.charon.ui;
+package org.amadeus.charon.ui.components;
 
 import com.vaadin.ui.*;
+import org.amadeus.charon.ui.uploaders.*;
 
 
-import static org.amadeus.charon.ui.ProfessorAddCourse.*;
+import static org.amadeus.charon.ui.pages.CourseCreatePage.*;
 
 /**
  * Created by aaron on 02/04/17.

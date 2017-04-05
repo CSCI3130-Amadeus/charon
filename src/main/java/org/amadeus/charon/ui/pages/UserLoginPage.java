@@ -1,4 +1,4 @@
-package org.amadeus.charon.ui;
+package org.amadeus.charon.ui.pages;
 
 import org.amadeus.charon.data.UserManager;
 import org.amadeus.charon.data.UserManager.LoginMessage;
@@ -12,8 +12,9 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import org.amadeus.charon.ui.*;
 
-public class UserLogin extends VerticalLayout{
+public class UserLoginPage extends VerticalLayout{
 	
 	
     private TextField usernameField;
@@ -28,7 +29,7 @@ public class UserLogin extends VerticalLayout{
     public static final String SUBMIT_ID = "SUBMIT";
     
     
-    public UserLogin(){
+    public UserLoginPage(){
     	init();
     }
     
