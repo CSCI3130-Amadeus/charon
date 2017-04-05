@@ -20,7 +20,7 @@ public class ReviewCourseTest {
     @Before
     public void setupTest(){
         UserManager.getInstance().registerUser(username, "fake@fake.com", "passssword");
-        CourseManager.getInstance().createCourse(persistanceTestCourseCode, "Software Engineering", "Lorem Ipsum", null);
+        CourseManager.getInstance().createCourse(persistanceTestCourseCode, "Software Engineering", "Lorem Ipsum", SYLLABUS_PATH);
         CourseManager.getInstance().createCourse(ratingTestCourseCode, "Rating test", "Lorem Ipsum", null);
     }
 
