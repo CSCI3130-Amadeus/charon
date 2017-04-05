@@ -1,19 +1,10 @@
 package org.amadeus.charon.data;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import com.vaadin.ui.*;
+import org.junit.*;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 
-import com.steadystate.css.dom.Property;
-import com.vaadin.data.Item;
-import com.vaadin.ui.ListSelect; 
+import static org.junit.Assert.*;
 
 public class ReviewCourseTest {
     
@@ -24,12 +15,13 @@ public class ReviewCourseTest {
 	private static final ListSelect testList = new ListSelect();
     
 
+    private static final String SYLLABUS_PATH = "target/upload/test.pdf";
+
     @Before
     public void setupTest(){
         UserManager.getInstance().registerUser(username, "fake@fake.com", "passssword");
-        CourseManager.getInstance().createCourse(persistanceTestCourseCode, "Software Engineering", "Lorem Ipsum");
-        CourseManager.getInstance().createCourse(ratingTestCourseCode, "Rating test", "Lorem Ipsum");
-        
+        CourseManager.getInstance().createCourse(persistanceTestCourseCode, "Software Engineering", "Lorem Ipsum", null);
+        CourseManager.getInstance().createCourse(ratingTestCourseCode, "Rating test", "Lorem Ipsum", null);
     }
 
     
@@ -46,6 +38,12 @@ public class ReviewCourseTest {
         Course loadedFromDB = CourseManager.getInstance().getCourseByCode(persistanceTestCourseCode);
         
         assertTrue(loadedFromDB.getReviews().size() >= 1);
+    }
+
+    @Test
+    public void confirmPathTest() {
+        Course course = CourseManager.getInstance().getCourseByCode(persistanceTestCourseCode);
+        assertTrue(course.getSyllabusPath().equals(SYLLABUS_PATH));
     }
     
     @Test
