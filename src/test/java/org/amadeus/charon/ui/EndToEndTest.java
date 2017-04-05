@@ -1,28 +1,16 @@
 package org.amadeus.charon.ui;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.util.List;
-
+import com.vaadin.testbench.*;
+import com.vaadin.testbench.elements.*;
+import java.util.*;
 import org.amadeus.charon.ui.components.*;
 import org.amadeus.charon.ui.pages.*;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.*;
 
-import com.vaadin.testbench.Parameters;
-import com.vaadin.testbench.ScreenshotOnFailureRule;
-import com.vaadin.testbench.TestBenchTestCase;
-import com.vaadin.testbench.elements.ButtonElement;
-import com.vaadin.testbench.elements.LabelElement;
-import com.vaadin.testbench.elements.PasswordFieldElement;
-import com.vaadin.testbench.elements.TextAreaElement;
-import com.vaadin.testbench.elements.TextFieldElement;
-import com.vaadin.testbench.elements.UploadElement;
+
+import static org.junit.Assert.*;
 
 public class EndToEndTest extends TestBenchTestCase{
 
@@ -36,9 +24,11 @@ public class EndToEndTest extends TestBenchTestCase{
     private static final String COURSE_NAME = "Software Engineering";
     private static final String COURSE_DESC = "Lorem ipsum si dolor amet";
     
+    private static final String COURSE_RATING = "1";
+    
     private static final String PNG_PATH = "src/main/resources/test.png";
     private static final String PDF_PATH = "src/main/resources/test.pdf";
-            
+
     @Rule
     public ScreenshotOnFailureRule screenshotOnFailureRule =
         new ScreenshotOnFailureRule(this, true);
@@ -128,17 +118,23 @@ public class EndToEndTest extends TestBenchTestCase{
         try {
             String reviewString = "Review: " + System.currentTimeMillis();
             $(TextAreaElement.class).id(ReviewForm.REVIEW_FIELD_ID).setValue(reviewString);
+            $(ListSelectElement.class).id(ReviewForm.REVIEW_RATING_ID).selectByText(COURSE_RATING);
             $(ButtonElement.class).id(ReviewForm.REVIEW_SUBMIT_ID).click();
             
             List<LabelElement> labels = $(LabelElement.class).all();
-            boolean hasLabel = false;
+            boolean hasReviewLabel = false;
+            boolean hasRatingLabel = false;
             for (LabelElement label : labels) {
                 if (label.getText().equals(reviewString)){
-                    hasLabel = true;
+                    hasReviewLabel = true;
+                }
+                if (label.getText().equals("Rating: " + COURSE_RATING)){
+                	hasRatingLabel = true;
                 }
             }
             
-            assertTrue(hasLabel);
+            assertTrue(hasReviewLabel);
+            assertTrue(hasRatingLabel);
         }
         catch (NoSuchElementException e){
             e.printStackTrace();

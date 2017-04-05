@@ -13,7 +13,11 @@ public class CourseOverviewPage extends VerticalLayout {
     public static final String COURSE_NAME_ID = "COURSE_NAME";
     public static final String COURSE_DESC_ID = "COURSE_DESC";
     public static final String EDIT_COURSE_ID = "EDIT_COURSE";
-    
+	public static final String TAB_SHEET_ID = "TAB_SHEET";
+    public static final String TAB_SHEET_REVIEWS = "Reviews";
+	public static final String TAB_SHEET_ALT_TEXT = "Alternate textbooks";
+
+
 	private ReviewForm reviewForm;
 	private ReviewList reviewList;
 
@@ -75,6 +79,8 @@ public class CourseOverviewPage extends VerticalLayout {
 	private void buildTabSheet(){
 		TabSheet tabSheet = new TabSheet();
 
+		tabSheet.setId(TAB_SHEET_ID);
+
 		buildReviewForm(tabSheet);
 		buildAltTextbookForm(tabSheet);
 
@@ -93,8 +99,9 @@ public class CourseOverviewPage extends VerticalLayout {
 
 		// Add them to the layout.
 		reviewComponents.addComponent(reviewForm);
+		reviewComponents.addComponent(reviewList);
 
-		tabSheet.addTab(reviewComponents, "Reviews");
+		tabSheet.addTab(reviewComponents, TAB_SHEET_REVIEWS);
 	}
 
 	private void buildAltTextbookForm(TabSheet tabSheet){
@@ -111,7 +118,7 @@ public class CourseOverviewPage extends VerticalLayout {
 		layout.addComponent(altTextbookForm);
 		layout.addComponent(altTextbookList);
 
-		tabSheet.addTab(layout, "Alt Textbook");
+		tabSheet.addTab(layout, TAB_SHEET_ALT_TEXT);
 	}
 
 	private void buildEditButton(){

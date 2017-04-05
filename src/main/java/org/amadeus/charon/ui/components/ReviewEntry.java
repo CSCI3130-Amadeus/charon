@@ -7,7 +7,12 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 public class ReviewEntry extends CustomComponent{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Label description;
+	private Label rating;
 	private Label userName;
 	private Review review;
 	
@@ -20,7 +25,10 @@ public class ReviewEntry extends CustomComponent{
 		VerticalLayout layout = new VerticalLayout();
 		userName = new Label(review.getOwner().getUsername());
 		description = new Label(review.getComment());
+		rating = new Label("Rating: " + review.getRating());
+
 		layout.addComponent(userName);
+		layout.addComponent(rating);
 		layout.addComponent(description);
 
 		setCompositionRoot(layout);
