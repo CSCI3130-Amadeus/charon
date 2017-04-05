@@ -7,6 +7,10 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 public class ReviewDisplay extends CustomComponent{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Label description;
 	private Label rating;
 	private Label userName;

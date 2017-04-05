@@ -1,11 +1,7 @@
 package org.amadeus.charon.data;
-import java.util.Collection;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import com.vaadin.ui.ListSelect;
 
 public class ReviewManager {
 
@@ -27,7 +23,7 @@ public class ReviewManager {
         return instance;
     }
     
-    public boolean createReview(String comment, User user, Course course, String rating){
+    public boolean createReview(String comment, User user, Course course, int rating){
         
         if (!comment.equals("") && comment != null){
         	EntityManager em = emFactory.createEntityManager();

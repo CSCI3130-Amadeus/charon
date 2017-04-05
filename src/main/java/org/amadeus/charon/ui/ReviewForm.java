@@ -1,8 +1,6 @@
 package org.amadeus.charon.ui;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Observer;
 
 import org.amadeus.charon.data.Course;
@@ -11,14 +9,11 @@ import org.amadeus.charon.data.ReviewManager;
 import org.amadeus.charon.data.User;
 import org.amadeus.charon.data.UserManager;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Notification;
-import com.gargoylesoftware.htmlunit.javascript.host.Set;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.ListSelect; 
@@ -84,7 +79,7 @@ public class ReviewForm extends CustomComponent {
             @Override
             public void buttonClick(ClickEvent event) {
                 User user = UserManager.getInstance().getAuthedUser();
-                String rating = selectRating.getValue().toString();
+                int rating = Integer.parseInt(selectRating.getValue().toString());
                 ReviewManager.getInstance().createReview(commentEntry.getValue(), user, course, rating);
                 // TODO: Add live update here.
                 notifyObservers(new Review(commentEntry.getValue(), user, course, rating));
